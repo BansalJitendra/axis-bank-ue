@@ -305,3 +305,34 @@ main .section.dark h5,
 main .section.dark h6 {
   color: #fff;
 }
+
+/* ---------------------------------------------------------------------------
+   Hero "Apply Now" promo banners.
+   On the source, the Flipkart / 24x7 Personal Loan / Neo Card / FCNR banners
+   sit in a compact promo carousel inside the right-hand Apply Now panel next
+   to the hero. In the imported content they are loose default-content
+   paragraphs (a link-wrapped <picture> each) that would otherwise render as
+   full-width stacked images. Constrain them to a tidy promo strip and hide the
+   leftover carousel artifacts ("‹›" nav + "1234" dots). Scoped to the hero
+   section (carousel-banner-container) so CSR / Safe Banking images are
+   unaffected.
+   --------------------------------------------------------------------------- */
+main .section.carousel-banner-container .default-content-wrapper p:has(> a > picture) {
+  display: inline-block;
+  width: clamp(240px, 45%, 300px);
+  margin: 8px 8px 0 0;
+  vertical-align: top;
+}
+
+main .section.carousel-banner-container .default-content-wrapper p:has(> a > picture) img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Leftover owl-carousel nav ("‹›") and dot ("1234") text nodes from import */
+/* stylelint-disable-next-line no-descending-specificity */
+main .section.carousel-banner-container .default-content-wrapper > p:not(:has(a, picture)) {
+  display: none;
+}
