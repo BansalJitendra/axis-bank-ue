@@ -232,57 +232,66 @@ var CustomImportScript = (() => {
 
   // tools/importer/parsers/columns-product.js
   function parse4(element, { document: document2 }) {
-    const heading = element.querySelector(".card-heading, h2, h3");
-    const imageLinks = Array.from(element.querySelectorAll("a[href]")).filter(
-      (a) => a.querySelector("img, picture")
-    );
-    const textLinks = Array.from(
-      element.querySelectorAll(
-        ".item a[href], a.cardwrap, .card-most-searched, .know-more-item a[href], .card-title"
-      )
-    ).filter((a) => a.tagName === "A" && a.getAttribute("href") && !a.querySelector("img, picture"));
-    const bareImages = Array.from(element.querySelectorAll("picture, img")).filter(
-      (img) => !img.closest("a")
-    );
+    const band = element.querySelector(
+      '.open-account, .open-creditcard, .open-loans, .open-investments, .open-deposit, section[class*="open-"]'
+    ) || element;
+    const clean = (s) => (s || "").replace(/ /g, " ").replace(/\s+/g, " ").trim();
+    const textLink = (href, text) => {
+      const a = document2.createElement("a");
+      a.setAttribute("href", href);
+      a.textContent = text;
+      const p = document2.createElement("p");
+      p.appendChild(a);
+      return p;
+    };
     const leftCell = document2.createDocumentFragment();
-    if (heading) leftCell.appendChild(heading.cloneNode(true));
+    const heading = band.querySelector(".badge-text, .content-box h2, h2");
+    if (heading) {
+      const h2 = document2.createElement("h2");
+      h2.textContent = clean(heading.textContent);
+      leftCell.appendChild(h2);
+    }
+    const modelPicture = band.querySelector(".model picture, .content-box ~ .model picture");
+    const modelImg = band.querySelector(".model img");
+    if (modelPicture) {
+      leftCell.appendChild(modelPicture.cloneNode(true));
+    } else if (modelImg) {
+      leftCell.appendChild(modelImg.cloneNode(true));
+    }
     const seenLeft = /* @__PURE__ */ new Set();
-    textLinks.forEach((a) => {
+    Array.from(band.querySelectorAll("ul.query-list li a[href], .query-list a.query-link")).forEach((a) => {
       const href = a.getAttribute("href");
-      if (seenLeft.has(href)) return;
+      const text = clean(a.textContent);
+      if (!href || !text || seenLeft.has(href)) return;
       seenLeft.add(href);
-      const title = a.querySelector(".card-title, .card-content, p");
-      const link = document2.createElement("a");
-      link.setAttribute("href", href);
-      link.textContent = (title ? title.textContent : a.textContent || "").trim();
-      if (!link.textContent) return;
-      const p = document2.createElement("p");
-      p.appendChild(link);
-      leftCell.appendChild(p);
+      leftCell.appendChild(textLink(href, text));
     });
+    const learnMore = band.querySelector("a.view-all-query, .content-box a.link-btn");
+    if (learnMore && learnMore.getAttribute("href") && !seenLeft.has(learnMore.getAttribute("href"))) {
+      leftCell.appendChild(textLink(learnMore.getAttribute("href"), clean(learnMore.textContent)));
+    }
     const rightCell = document2.createDocumentFragment();
+    const subHeading = band.querySelector(".data-title, .data-card h3, h3");
+    if (subHeading) {
+      const h3 = document2.createElement("h3");
+      h3.textContent = clean(subHeading.textContent);
+      rightCell.appendChild(h3);
+    }
     const seenRight = /* @__PURE__ */ new Set();
-    imageLinks.forEach((a) => {
-      const img = a.querySelector("img");
+    Array.from(band.querySelectorAll("ul.option-list li a.option-link, .option-list a[href]")).forEach((a) => {
       const href = a.getAttribute("href");
-      const key = img && img.getAttribute("src") || href;
-      if (seenRight.has(key)) return;
-      seenRight.add(key);
-      const link = document2.createElement("a");
-      if (href) link.setAttribute("href", href);
-      const picture = a.querySelector("picture") || img;
-      link.appendChild(picture.cloneNode(true));
-      const p = document2.createElement("p");
-      p.appendChild(link);
-      rightCell.appendChild(p);
+      if (!href || seenRight.has(href)) return;
+      seenRight.add(href);
+      const title = clean((a.querySelector(".opt-title, h4") || {}).textContent);
+      const desc = clean((a.querySelector(".opt-desc") || {}).textContent);
+      const label = [title, desc].filter(Boolean).join(" / ") || clean(a.textContent);
+      if (!label) return;
+      rightCell.appendChild(textLink(href, label));
     });
-    bareImages.forEach((img) => {
-      var _a;
-      const key = img.tagName === "IMG" ? img.getAttribute("src") : (_a = img.querySelector("img")) == null ? void 0 : _a.getAttribute("src");
-      if (key && seenRight.has(key)) return;
-      if (key) seenRight.add(key);
-      rightCell.appendChild(img.cloneNode(true));
-    });
+    const explore = band.querySelector("a.btn-explore, .data-content a.btn");
+    if (explore && explore.getAttribute("href") && !seenRight.has(explore.getAttribute("href"))) {
+      rightCell.appendChild(textLink(explore.getAttribute("href"), clean(explore.textContent)));
+    }
     const hasLeft = leftCell.childNodes.length > 0;
     const hasRight = rightCell.childNodes.length > 0;
     if (!hasLeft && !hasRight) {
@@ -643,11 +652,11 @@ var CustomImportScript = (() => {
       {
         name: "columns-product",
         instances: [
-          "body > main > div.pageWrapper.home > div:nth-of-type(6)",
-          "body > main > div.pageWrapper.home > div:nth-of-type(7)",
-          "body > main > div.pageWrapper.home > div:nth-of-type(8)",
-          "body > main > div.pageWrapper.home > div:nth-of-type(9)",
-          "body > main > div.pageWrapper.home > div:nth-of-type(10)"
+          "section.open-account",
+          "section.open-creditcard",
+          "section.open-loans:not(.open-deposit)",
+          "section.open-investments",
+          "section.open-deposit"
         ]
       },
       { name: "columns-promo", instances: ["body > main > div.pageWrapper.home > div:nth-of-type(11)"] },

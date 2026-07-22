@@ -43,45 +43,102 @@
    so the promo bands render on the published site without a separate CSS file.
    =========================================================================== */
 
-/* --- columns-product: heading badge + illustrative image --- */
+/* --- columns-product: two-column product promo band ---
+   Left: section heading + illustration + article links.
+   Right: sub-heading + product-card grid + CTA. --- */
 .columns.columns-product > div {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
 }
 
-.columns.columns-product > div > div {
-  order: 1;
-}
-
-.columns.columns-product h2 {
-  display: inline-block;
-  margin: 0;
-  padding: 0 12px;
-  border-radius: 0 0 8px 8px;
-  background-color: var(--brand-maroon);
-  color: rgb(255 255 255);
-  font-size: 18px;
+.columns.columns-product > div > div:first-child h2 {
+  margin: 0 0 16px;
+  font-size: 28px;
   font-weight: 500;
-  line-height: 36px;
+  line-height: 1.3;
+  color: var(--text-color);
 }
 
-.columns.columns-product h2 em {
+.columns.columns-product > div > div:first-child h2 em {
   font-weight: 700;
   font-style: italic;
-  color: rgb(255 255 255);
+  color: var(--brand-maroon);
 }
 
 .columns.columns-product img {
   display: block;
   width: 100%;
-  max-width: 360px;
+  max-width: 320px;
   height: auto;
+  margin: 0 0 16px;
   object-fit: contain;
 }
 
-.columns.columns-product > div > .columns-img-col {
-  order: 0;
+.columns.columns-product picture {
+  display: block;
+}
+
+.columns.columns-product > div > div:first-child p {
+  margin: 0 0 10px;
+}
+
+.columns.columns-product > div > div:first-child p a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.columns.columns-product > div > div:first-child p a:hover {
+  color: var(--brand-maroon);
+  text-decoration: underline;
+}
+
+.columns.columns-product > div > div:last-child h3 {
+  margin: 0 0 20px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-color);
+}
+
+.columns.columns-product > div > div:last-child p {
+  margin: 0 0 12px;
+}
+
+.columns.columns-product > div > div:last-child p a {
+  display: block;
+  padding: 14px 18px;
+  border: 1px solid rgb(151 20 77 / 15%);
+  border-radius: 8px;
+  background-color: rgb(255 255 255);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.columns.columns-product > div > div:last-child p a:hover {
+  border-color: var(--brand-maroon);
+  box-shadow: 0 2px 10px rgb(151 20 77 / 12%);
+}
+
+.columns.columns-product > div > div:last-child p:last-child a {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--brand-pink);
+  color: rgb(255 255 255);
+  font-weight: 700;
+}
+
+.columns.columns-product > div > div:last-child p:last-child a:hover {
+  background-color: var(--brand-maroon);
+  box-shadow: none;
 }
 
 /* --- columns-promo: two equal gradient panels --- */
@@ -170,20 +227,32 @@
     gap: 48px;
   }
 
-  .columns.columns-product > div > div {
-    flex: 1 1 54%;
-    order: unset;
-  }
-
-  .columns.columns-product > div > .columns-img-col {
+  /* Left column ~46% (heading + image + article links) */
+  .columns.columns-product > div > div:first-child {
     flex: 0 1 46%;
-    order: unset;
   }
 
-  .columns.columns-product img {
-    width: auto;
-    max-width: 100%;
-    margin-left: auto;
+  /* Right column ~54%, product cards in a 2-col grid */
+  .columns.columns-product > div > div:last-child {
+    flex: 1 1 54%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+    align-content: start;
+  }
+
+  .columns.columns-product > div > div:last-child h3,
+  .columns.columns-product > div > div:last-child p:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .columns.columns-product > div > div:last-child p {
+    margin: 0;
+  }
+
+  .columns.columns-product > div > div:last-child p a {
+    height: 100%;
+    box-sizing: border-box;
   }
 
   .columns.columns-promo > div {

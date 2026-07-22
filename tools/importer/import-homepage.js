@@ -41,11 +41,11 @@ const PAGE_TEMPLATE = {
     {
       name: 'columns-product',
       instances: [
-        'body > main > div.pageWrapper.home > div:nth-of-type(6)',
-        'body > main > div.pageWrapper.home > div:nth-of-type(7)',
-        'body > main > div.pageWrapper.home > div:nth-of-type(8)',
-        'body > main > div.pageWrapper.home > div:nth-of-type(9)',
-        'body > main > div.pageWrapper.home > div:nth-of-type(10)',
+        'section.open-account',
+        'section.open-creditcard',
+        'section.open-loans:not(.open-deposit)',
+        'section.open-investments',
+        'section.open-deposit',
       ],
     },
     { name: 'columns-promo', instances: ['body > main > div.pageWrapper.home > div:nth-of-type(11)'] },
