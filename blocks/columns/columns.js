@@ -9,13 +9,12 @@ export default function decorate(block) {
   if (cols.length === 2
     && !block.classList.contains('columns-product')
     && !block.classList.contains('columns-promo')) {
-    const hasImage = !!block.querySelector('img');
-    const linkCount = block.querySelectorAll('a').length;
-    if (hasImage && linkCount === 0) {
-      // heading + illustrative image only -> product promo band
+    // Product bands have a right-column <h3> sub-heading ("Choose from ...");
+    // the payments/rewards promo has only <h2> panel headings and no <h3>.
+    const hasSubheading = !!block.querySelector('h3');
+    if (hasSubheading) {
       block.classList.add('columns-product');
-    } else if (linkCount >= 3) {
-      // side-by-side panels with quick-action links -> payments/rewards promo
+    } else if (block.querySelectorAll('a').length >= 3) {
       block.classList.add('columns-promo');
     }
   }
