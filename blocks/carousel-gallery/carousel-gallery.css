@@ -55,7 +55,11 @@
 .carousel-gallery .carousel-gallery-slide .carousel-gallery-slide-image img {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: auto;
+
+  /* Source Financial Literacy Week promo cards are portrait (~430x588 = 3:4);
+     preserve that ratio so the images are not cropped into squares. */
+  aspect-ratio: 430 / 588;
   object-fit: cover;
   border-radius: 12px;
 }

@@ -36,6 +36,7 @@
 .columns-product img {
   display: block;
   width: 100%;
+  max-width: 360px;
   height: auto;
   object-fit: contain;
 }
