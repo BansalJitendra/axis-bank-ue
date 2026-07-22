@@ -51,7 +51,11 @@ async function fetchNavFragment(navPath) {
 function resolveImagePath(img) {
   const src = img.getAttribute('src');
   if (src && !src.startsWith('http') && !src.startsWith('/')) {
-    img.setAttribute('src', `/content/${src}`);
+    // Nav images are committed to the repo-served /icons folder (available on
+    // both local preview and the published site), keyed by file name. The
+    // authored fragment references them as relative "images/<file>" paths.
+    const fileName = src.split('/').pop();
+    img.setAttribute('src', `/icons/${fileName}`);
   }
 }
 
@@ -276,7 +280,20 @@ export default async function decorate(block) {
   if (brandRow) {
     brandRow.classList.add('nav-brand-row');
     const brandLink = brandRow.querySelector('p a');
-    if (brandLink) brandLink.closest('p').classList.add('nav-brand');
+    if (brandLink) {
+      brandLink.closest('p').classList.add('nav-brand');
+      // Some content sources emit the logo link without its image (e.g. a
+      // link-wrapped image collapsed during JCR conversion). Guarantee the
+      // brand logo renders by inserting it when absent.
+      if (!brandLink.querySelector('img')) {
+        const logo = document.createElement('img');
+        logo.src = '/icons/logo.svg';
+        logo.alt = 'Axis Bank Logo';
+        logo.width = 122;
+        logo.height = 40;
+        brandLink.append(logo);
+      }
+    }
     const audienceList = brandRow.querySelector('ul');
     if (audienceList) audienceList.classList.add('nav-audience');
   }
