@@ -83,6 +83,46 @@ function buildAutoBlocks() {
   }
 }
 
+/**
+ * Group the hero "Apply Now" panel's loose link and image paragraphs into two
+ * horizontal scroll-snap carousels (product-link row + promo-banner row), so
+ * they render as ~50%-wide centered carousels like the source instead of a
+ * full-width stack. Scoped to the hero section's 4th default-content block.
+ * @param {Element} main The main element
+ */
+function decorateApplyNowCarousels(main) {
+  const heroSection = main.querySelector('.section.carousel-banner-container');
+  if (!heroSection) return;
+  const wrappers = heroSection.querySelectorAll(':scope > .default-content-wrapper');
+  const panel = wrappers[3];
+  if (!panel || panel.dataset.applyNowDecorated) return;
+
+  const linkParas = [];
+  const imageParas = [];
+  [...panel.children].forEach((p) => {
+    if (p.tagName !== 'P') return;
+    const a = p.querySelector(':scope > a');
+    if (!a) return;
+    if (a.querySelector('picture, img')) imageParas.push(p);
+    else if (!p.classList.contains('button-container') || a.getAttribute('href') !== '#') {
+      // product apply-now links (exclude the standalone "Rates" # link)
+      if (a.getAttribute('href') !== '#') linkParas.push(p);
+    }
+  });
+
+  const buildRow = (paras, modifier) => {
+    if (paras.length < 2) return;
+    const row = document.createElement('div');
+    row.className = `apply-now-carousel apply-now-carousel-${modifier}`;
+    paras[0].before(row);
+    paras.forEach((p) => row.append(p));
+  };
+
+  buildRow(linkParas, 'links');
+  buildRow(imageParas, 'images');
+  panel.dataset.applyNowDecorated = 'true';
+}
+
 function a11yLinks(main) {
   const links = main.querySelectorAll('a');
   links.forEach((link) => {
@@ -107,6 +147,8 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  // group the hero Apply Now links + promo banners into carousels
+  decorateApplyNowCarousels(main);
   // add aria-label to links
   a11yLinks(main);
 }

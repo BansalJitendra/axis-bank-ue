@@ -307,24 +307,84 @@ main .section.dark h6 {
 }
 
 /* ---------------------------------------------------------------------------
-   Hero "Apply Now" promo banners.
-   On the source, the Flipkart / 24x7 Personal Loan / Neo Card / FCNR banners
-   sit in a compact promo carousel inside the right-hand Apply Now panel next
-   to the hero. In the imported content they are loose default-content
-   paragraphs (a link-wrapped <picture> each) that would otherwise render as
-   full-width stacked images. Constrain them to a tidy promo strip and hide the
-   leftover carousel artifacts ("‹›" nav + "1234" dots). Scoped to the hero
-   section (carousel-banner-container) so CSR / Safe Banking images are
-   unaffected.
+   Hero "Apply Now" panel.
+   On the source this sits in a ~50%-wide, centered wrapper to the right of the
+   hero: an "Apply Now" product-link carousel plus a promo banner image carousel
+   (Flipkart / 24x7 Personal Loan / NRI / FCNR). In the imported content it is
+   loose default content (a "Rates" link, the "Apply Now" heading, 7 product
+   link paragraphs, then 4 promo image-link paragraphs, then a chip list).
+   Present the link group and the image group as horizontal scroll-snap
+   carousels, constrained to ~50% width and centered, matching the source.
+   Scoped to the hero section so other sections are unaffected.
    --------------------------------------------------------------------------- */
-main .section.carousel-banner-container .default-content-wrapper p:has(> a > picture) {
-  display: inline-block;
-  width: clamp(240px, 45%, 300px);
-  margin: 8px 8px 0 0;
-  vertical-align: top;
+
+/* The 4th default-content block in the hero section is the Apply Now panel.
+   Constrain to ~50% width, centered, matching the source's right-hand panel. */
+main .section.carousel-banner-container .default-content-wrapper:nth-of-type(4) {
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-main .section.carousel-banner-container .default-content-wrapper p:has(> a > picture) img {
+/* Apply Now heading */
+main .section.carousel-banner-container .default-content-wrapper:nth-of-type(4) h3 {
+  text-align: center;
+  margin: 8px 0 12px;
+}
+
+/* Carousel rows (built by decorateApplyNowCarousels): horizontal scroll-snap */
+main .apply-now-carousel {
+  display: flex;
+  gap: 8px;
+  margin: 0 auto 16px;
+  padding-bottom: 4px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+main .apply-now-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+main .apply-now-carousel p {
+  margin: 0;
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+}
+
+/* Product-link pills */
+main .apply-now-carousel-links p a {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid rgb(151 20 77 / 25%);
+  border-radius: 20px;
+  background-color: rgb(255 255 255);
+  color: var(--brand-maroon);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+main .apply-now-carousel-links p a:hover {
+  background-color: var(--brand-maroon);
+  color: rgb(255 255 255);
+}
+
+/* Promo banner images: one slide per view, full panel width */
+main .apply-now-carousel-images p {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .apply-now-carousel-images p a {
+  display: block;
+}
+
+main .apply-now-carousel-images img {
   display: block;
   width: 100%;
   height: auto;
@@ -333,6 +393,6 @@ main .section.carousel-banner-container .default-content-wrapper p:has(> a > pic
 
 /* Leftover owl-carousel nav ("‹›") and dot ("1234") text nodes from import */
 /* stylelint-disable-next-line no-descending-specificity */
-main .section.carousel-banner-container .default-content-wrapper > p:not(:has(a, picture)) {
+main .section.carousel-banner-container .default-content-wrapper:nth-of-type(4) > p:not(:has(a, picture)) {
   display: none;
 }
