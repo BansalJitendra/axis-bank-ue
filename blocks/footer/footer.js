@@ -12,14 +12,17 @@ function getFooterPath() {
 }
 
 /**
- * Fetch the footer fragment markup. Tries the local/AEM content path first,
- * then falls back to the DA/EDS production path derived from block metadata.
+ * Fetch the footer fragment markup. Tries the metadata-driven path first — it is
+ * authoritative and resolves identically in the Universal Editor, preview and
+ * published site (e.g. /footer.plain.html). The /content/footer.plain.html path
+ * is only a local-dev ("aem up") fallback; trying it first caused the UE to load
+ * a different/stale footer than the preview.
  * @returns {Promise<string|null>} raw HTML string or null
  */
 async function fetchFooterMarkup() {
-  let resp = await fetch('/content/footer.plain.html');
+  let resp = await fetch(`${getFooterPath()}.plain.html`);
   if (!resp.ok) {
-    resp = await fetch(`${getFooterPath()}.plain.html`);
+    resp = await fetch('/content/footer.plain.html');
   }
   if (!resp.ok) return null;
   return resp.text();

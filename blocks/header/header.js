@@ -24,7 +24,12 @@ function makeChevronToggle(label) {
  * @returns {Promise<Document|null>} parsed fragment document
  */
 async function fetchNavFragment(navPath) {
-  const candidates = ['/content/nav.plain.html', `${navPath}.plain.html`];
+  // Fetch the metadata-driven nav doc first — it is the authoritative source and
+  // resolves identically in the Universal Editor, preview and published site
+  // (e.g. /nav.plain.html). The /content/nav.plain.html path is only a
+  // local-dev ("aem up") fallback; trying it first caused the UE to load a
+  // different/stale nav than the preview.
+  const candidates = [`${navPath}.plain.html`, '/content/nav.plain.html'];
   for (let i = 0; i < candidates.length; i += 1) {
     try {
       // eslint-disable-next-line no-await-in-loop
