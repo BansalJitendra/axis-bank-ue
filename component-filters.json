@@ -111,7 +111,7 @@
   {
     "id": "table-rates",
     "components": [
-      "table-rates-row"
+      "table-rates-col-4"
     ]
   },
   {
