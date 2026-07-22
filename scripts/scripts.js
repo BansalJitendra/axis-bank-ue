@@ -93,8 +93,10 @@ function buildAutoBlocks() {
 function decorateApplyNowCarousels(main) {
   const heroSection = main.querySelector('.section.carousel-banner-container');
   if (!heroSection) return;
-  const wrappers = heroSection.querySelectorAll(':scope > .default-content-wrapper');
-  const panel = wrappers[3];
+  // The panel is the default-content block containing the "Apply Now" heading.
+  const applyHeading = heroSection.querySelector('#apply-now')
+    || [...heroSection.querySelectorAll('h3')].find((h) => /apply now/i.test(h.textContent || ''));
+  const panel = applyHeading ? applyHeading.closest('.default-content-wrapper') : null;
   if (!panel || panel.dataset.applyNowDecorated) return;
 
   const linkParas = [];
@@ -103,10 +105,12 @@ function decorateApplyNowCarousels(main) {
     if (p.tagName !== 'P') return;
     const a = p.querySelector(':scope > a');
     if (!a) return;
-    if (a.querySelector('picture, img')) imageParas.push(p);
-    else if (!p.classList.contains('button-container') || a.getAttribute('href') !== '#') {
+    const href = a.getAttribute('href') || '';
+    if (a.querySelector('picture, img')) {
+      imageParas.push(p);
+    } else if (href && href !== '#') {
       // product apply-now links (exclude the standalone "Rates" # link)
-      if (a.getAttribute('href') !== '#') linkParas.push(p);
+      linkParas.push(p);
     }
   });
 
