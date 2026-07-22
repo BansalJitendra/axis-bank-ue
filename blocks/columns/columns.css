@@ -31,3 +31,168 @@
     order: unset;
   }
 }
+
+/* stylelint-disable no-descending-specificity -- variant rules intentionally
+   follow the base columns rules; scopes are distinct (.columns-product /
+   .columns-promo) so cascade order is not affected. */
+
+/* ===========================================================================
+   Axis promo variants. columns.js applies these variant classes when the
+   authored content collapsed to the base "columns" block (DA/JCR conversion
+   drops the variant name). Rules mirror columns-product.css / columns-promo.css
+   so the promo bands render on the published site without a separate CSS file.
+   =========================================================================== */
+
+/* --- columns-product: heading badge + illustrative image --- */
+.columns.columns-product > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.columns.columns-product > div > div {
+  order: 1;
+}
+
+.columns.columns-product h2 {
+  display: inline-block;
+  margin: 0;
+  padding: 0 12px;
+  border-radius: 0 0 8px 8px;
+  background-color: var(--brand-maroon);
+  color: rgb(255 255 255);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 36px;
+}
+
+.columns.columns-product h2 em {
+  font-weight: 700;
+  font-style: italic;
+  color: rgb(255 255 255);
+}
+
+.columns.columns-product img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.columns.columns-product > div > .columns-img-col {
+  order: 0;
+}
+
+/* --- columns-promo: two equal gradient panels --- */
+.columns.columns-promo > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.columns.columns-promo > div > div {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px;
+  border-radius: 16px;
+  background-image: linear-gradient(
+    rgb(235 249 248) 68.24%,
+    rgb(182 212 210) 103.96%
+  );
+  overflow: hidden;
+}
+
+.columns.columns-promo > div > div h2 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.36;
+  color: var(--text-color);
+}
+
+.columns.columns-promo > div > div p {
+  margin: 0 0 18px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+  color: var(--text-color);
+}
+
+.columns.columns-promo > div > div .button-container {
+  display: inline-flex;
+  margin: 0 8px 8px 0;
+}
+
+.columns.columns-promo > div > div a.button:any-link {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  border: 1px solid rgb(151 20 77 / 25%);
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: rgb(255 255 255);
+  color: var(--brand-maroon);
+}
+
+.columns.columns-promo > div > div a.button:hover,
+.columns.columns-promo > div > div a.button:focus {
+  background-color: var(--brand-maroon);
+  color: rgb(255 255 255);
+}
+
+.columns.columns-promo > div > div p:has(picture) {
+  margin: 18px 0 0;
+}
+
+.columns.columns-promo > div > div picture {
+  display: block;
+}
+
+.columns.columns-promo > div > div img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+@media (width >= 900px) {
+  .columns.columns-product > div {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+  }
+
+  .columns.columns-product > div > div {
+    flex: 1 1 54%;
+    order: unset;
+  }
+
+  .columns.columns-product > div > .columns-img-col {
+    flex: 0 1 46%;
+    order: unset;
+  }
+
+  .columns.columns-product img {
+    width: auto;
+    max-width: 100%;
+    margin-left: auto;
+  }
+
+  .columns.columns-promo > div {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 40px;
+  }
+
+  .columns.columns-promo > div > div {
+    flex: 1 1 0;
+    padding: 41px 62px;
+  }
+}
