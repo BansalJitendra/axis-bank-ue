@@ -396,3 +396,12 @@ main .apply-now-carousel-images img {
 main .section.carousel-banner-container .default-content-wrapper:nth-of-type(4) > p:not(:has(a, picture)) {
   display: none;
 }
+
+/* Hide empty promo image anchors (link with no text and no image) so the panel
+   has no blank gaps when a banner image is missing from the content. */
+/* stylelint-disable no-descending-specificity */
+main .section.carousel-banner-container .default-content-wrapper:nth-of-type(4) p:has(> a:empty),
+main .apply-now-carousel-images p:has(> a:empty) {
+  display: none;
+}
+/* stylelint-enable no-descending-specificity */
