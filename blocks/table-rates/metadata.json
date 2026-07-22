@@ -1,0 +1,38 @@
+{
+  "variantName": "table-rates",
+  "baseBlock": "table",
+  "version": "1.0.0",
+  "created": "2026-07-20T08:55:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.axis.bank.in/",
+    "originPage": "Axis Bank homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "interest-rates",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "rate rows (rate / tier / customer-type / tenure)",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "interest rate tables",
+      "fee/charge comparison tables",
+      "tabular financial data with tenure/customer-type columns"
+    ],
+    "notSuitableFor": [
+      "narrative content",
+      "image-heavy comparisons"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-20T08:55:00.000Z"
+  }
+}

@@ -1,0 +1,115 @@
+/*
+ * table-rates block
+ * Axis Bank interest-rates / FD + loan rate grid.
+ * Values extracted from source .interest-rates-popup computed styles.
+ * DOM: JS builds <table><thead><tr><th>..</thead><tbody><tr><td>..
+ * Columns: 1 = rate figure, 2 = tier/section, 3 = customer/product, 4 = tenure.
+ */
+
+.table-rates.block {
+  width: 100%;
+  overflow-x: auto;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+}
+
+.table-rates.block table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* header row (first authored row) */
+.table-rates.block table thead tr {
+  border-bottom: 2px solid rgb(157 157 157);
+}
+
+.table-rates.block table th {
+  padding: 10px 12px;
+  color: var(--text-color);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* body rows separated by thin rule, matching .divider-stroke */
+.table-rates.block table tbody tr {
+  border-bottom: 1px solid rgb(157 157 157);
+}
+
+.table-rates.block table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table-rates.block table td {
+  padding: 10px 12px;
+  color: var(--brand-muted);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* first column = the rate figure, emphasised in brand maroon */
+.table-rates.block table th:first-child {
+  color: var(--brand-maroon);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.table-rates.block table td:first-child {
+  color: var(--brand-maroon);
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* third column = customer type / product name, slightly stronger */
+.table-rates.block table th:nth-child(3),
+.table-rates.block table td:nth-child(3) {
+  color: var(--text-color);
+  font-weight: 700;
+}
+
+.table-rates table th p,
+.table-rates table td p {
+  margin: 0;
+}
+
+.table-rates table td p + p {
+  margin-top: 2px;
+}
+
+@media (width >= 600px) {
+  .table-rates.block table th,
+  .table-rates.block table td {
+    padding: 12px 16px;
+  }
+}
+
+@media (width >= 900px) {
+  .table-rates.block table th:first-child,
+  .table-rates.block table td:first-child {
+    font-size: 18px;
+  }
+}
+
+/* striped variant */
+.table-rates.block.striped tbody tr:nth-child(odd) {
+  background-color: rgb(249 249 249);
+}
+
+/* no header variant */
+.table-rates.block.no-header table tbody tr:first-child {
+  border-top: 1px solid rgb(157 157 157);
+}
+
+/* bordered variant */
+.table-rates.block.bordered table th,
+.table-rates.block.bordered table td {
+  border: 1px solid rgb(157 157 157);
+}

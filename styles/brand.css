@@ -1,0 +1,24 @@
+:root {
+  --heading-font-family: "Lato", sans-serif;
+  --body-font-family: "Lato", sans-serif;
+  --background-color: rgb(255 255 255);
+  --text-color: rgb(40 40 40);
+  --link-color: rgb(151 20 77);
+  --link-hover-color: rgb(237 17 100);
+
+  /* Axis Bank brand palette */
+  --brand-maroon: rgb(151 20 77);
+  --brand-pink: rgb(237 17 100);
+  --brand-muted: rgb(110 110 110);
+  --brand-dark: rgb(33 15 23);
+  --brand-light: rgb(249 249 249);
+  --section-padding: 48px;
+  --nav-height: 165px;
+  --content-max-width: 1200px;
+  --heading-size-xxl: 48px;
+  --heading-size-xl: 40px;
+  --heading-size-l: 28px;
+  --heading-size-m: 22px;
+  --heading-size-s: 18px;
+  --heading-size-xs: 16px;
+}

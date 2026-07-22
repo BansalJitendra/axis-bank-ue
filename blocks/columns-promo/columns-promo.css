@@ -1,0 +1,100 @@
+/* Block: columns-promo -- values extracted from source computed styles */
+
+/* Row: two equal promo panels. Mobile-first (stacked). */
+.columns-promo > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Each panel cell = a rounded gradient card */
+.columns-promo > div > div {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px;
+  border-radius: 16px;
+  background-image: linear-gradient(
+    rgb(235 249 248) 68.24%,
+    rgb(182 212 210) 103.96%
+  );
+  overflow: hidden;
+}
+
+/* Panel heading */
+.columns-promo > div > div h2 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.36;
+  color: var(--text-color);
+}
+
+/* Panel description */
+.columns-promo > div > div p {
+  margin: 0 0 18px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+  color: var(--text-color);
+}
+
+/* Quick-link chips: EDS turns standalone <p><a> into a.button.
+   Reset to compact rounded action chips matching source. */
+.columns-promo > div > div .button-container {
+  display: inline-flex;
+  margin: 0 8px 8px 0;
+}
+
+.columns-promo > div > div a.button:any-link {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  border: 1px solid rgb(151 20 77 / 25%);
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: rgb(255 255 255);
+  color: var(--brand-maroon);
+}
+
+.columns-promo > div > div a.button:hover,
+.columns-promo > div > div a.button:focus {
+  background-color: var(--brand-maroon);
+  color: rgb(255 255 255);
+}
+
+/* Panel image: fills card width, sits below the content */
+.columns-promo > div > div p:has(picture) {
+  margin: 18px 0 0;
+}
+
+.columns-promo > div > div picture {
+  display: block;
+}
+
+.columns-promo > div > div img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Desktop: two equal side-by-side panels */
+@media (width >= 900px) {
+  .columns-promo > div {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 40px;
+  }
+
+  .columns-promo > div > div {
+    flex: 1 1 0;
+    padding: 41px 62px;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "xwalk",
+  "sites": {
+    "axis-bank-ue": {
+      "previewOrg": "bansaljitendra",
+      "previewSite": "axis-bank-ue",
+      "aemSitePath": "/content/axis-bank",
+      "aemAssetsFolderPath": "/content/dam/axis-bank",
+      "aemSiteName": "axis-bank",
+      "aemSiteTitle": "Axis Bank",
+      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+/* columns-product -- two-column promo: heading badge + illustrative image
+   Values extracted from source computed styles (axis.bank.in .open-account).
+   Section background (light/accent) is handled at the section level. */
+
+/* Row: stack on mobile, side-by-side on desktop */
+.columns-product > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Heading column: the maroon badge pill */
+.columns-product > div > div {
+  order: 1;
+}
+
+.columns-product h2 {
+  display: inline-block;
+  margin: 0;
+  padding: 0 12px;
+  border-radius: 0 0 8px 8px;
+  background-color: var(--brand-maroon);
+  color: rgb(255 255 255);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 36px;
+}
+
+.columns-product h2 em {
+  font-weight: 700;
+  font-style: italic;
+  color: rgb(255 255 255);
+}
+
+/* Image column */
+.columns-product img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.columns-product > div > .columns-product-img-col {
+  order: 0;
+}
+
+@media (width >= 900px) {
+  .columns-product > div {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+  }
+
+  /* Heading column sized wider (source content-box ~54%) */
+  .columns-product > div > div {
+    flex: 1 1 54%;
+    order: unset;
+  }
+
+  /* Image column (source model ~46%) */
+  .columns-product > div > .columns-product-img-col {
+    flex: 0 1 46%;
+    order: unset;
+  }
+
+  .columns-product img {
+    width: auto;
+    max-width: 100%;
+    margin-left: auto;
+  }
+}

@@ -34,15 +34,63 @@
     ]
   },
   {
+    "id": "cards-features",
+    "components": [
+      "card"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
     ]
   },
   {
+    "id": "carousel-banner",
+    "components": [
+      "carousel-banner-item"
+    ]
+  },
+  {
+    "id": "carousel-gallery",
+    "components": [
+      "carousel-gallery-item"
+    ]
+  },
+  {
     "id": "carousel",
     "components": [
       "carousel-item"
+    ]
+  },
+  {
+    "id": "columns-product",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
+  },
+  {
+    "id": "columns-promo",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
     ]
   },
   {
@@ -58,6 +106,30 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "table-rates",
+    "components": [
+      "table-rates-row"
+    ]
+  },
+  {
+    "id": "table-rates-2-columns",
+    "components": [
+      "table-rates-col-2"
+    ]
+  },
+  {
+    "id": "table-rates-3-columns",
+    "components": [
+      "table-rates-col-3"
+    ]
+  },
+  {
+    "id": "table-rates-4-columns",
+    "components": [
+      "table-rates-col-4"
     ]
   },
   {
@@ -82,6 +154,18 @@
     "id": "table-4-columns",
     "components": [
       "table-col-4"
+    ]
+  },
+  {
+    "id": "tabs-calculator",
+    "components": [
+      "tabs-calculator-item"
+    ]
+  },
+  {
+    "id": "tabs-product",
+    "components": [
+      "tabs-product-item"
     ]
   },
   {

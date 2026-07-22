@@ -1,0 +1,202 @@
+{
+  "metadata": {
+    "projectType": "xwalk"
+  },
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.axis.bank.in/"
+      ],
+      "representativeUrl": "https://www.axis.bank.in/",
+      "coverageGaps": [],
+      "description": "Axis Bank homepage: header navigation, hero carousel banner with tabbed product finder, promotional card grids, EMI calculator tabs, digital banking showcase, and footer with link columns.",
+      "blocks": [
+        {
+          "name": "header",
+          "instances": [
+            "body > header.header"
+          ]
+        },
+        {
+          "name": "carousel-banner",
+          "instances": [
+            "#hm-banner"
+          ]
+        },
+        {
+          "name": "tabs-product",
+          "instances": [
+            "#hm-banner div.banner-tab-wrap.home-banner-tab-wrap"
+          ]
+        },
+        {
+          "name": "table-rates",
+          "instances": [
+            "body > main > div.pageWrapper.home > div:nth-of-type(2)"
+          ]
+        },
+        {
+          "name": "columns-product",
+          "instances": [
+            "body > main > div.pageWrapper.home > div:nth-of-type(6)",
+            "body > main > div.pageWrapper.home > div:nth-of-type(7)",
+            "body > main > div.pageWrapper.home > div:nth-of-type(8)",
+            "body > main > div.pageWrapper.home > div:nth-of-type(9)",
+            "body > main > div.pageWrapper.home > div:nth-of-type(10)"
+          ]
+        },
+        {
+          "name": "columns-promo",
+          "instances": [
+            "body > main > div.pageWrapper.home > div:nth-of-type(11)"
+          ]
+        },
+        {
+          "name": "tabs-calculator",
+          "instances": [
+            "#emiCalcTabs"
+          ]
+        },
+        {
+          "name": "cards-features",
+          "instances": [
+            "#digital-baking-sec div.digi-wrapper"
+          ]
+        },
+        {
+          "name": "carousel-gallery",
+          "instances": [
+            "body > main > div.pageWrapper.home > div:nth-of-type(17)"
+          ]
+        },
+        {
+          "name": "footer",
+          "instances": [
+            "body > footer"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "product-savings",
+          "name": "Product Savings",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(6)",
+          "style": "light",
+          "blocks": [
+            "columns-product"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.home > div:nth-of-type(6)"
+          ]
+        },
+        {
+          "id": "product-creditcard",
+          "name": "Product Credit Card",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(7)",
+          "style": "accent",
+          "blocks": [
+            "columns-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-loans",
+          "name": "Product Loans",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(8)",
+          "style": "accent",
+          "blocks": [
+            "columns-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-investments",
+          "name": "Product Investments",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(9)",
+          "style": "accent",
+          "blocks": [
+            "columns-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "product-deposits",
+          "name": "Product Deposits",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(10)",
+          "style": "accent",
+          "blocks": [
+            "columns-product"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "payments-rewards",
+          "name": "Payments and Rewards",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(11)",
+          "style": "light",
+          "blocks": [
+            "columns-promo"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "calculators",
+          "name": "Calculators",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(12)",
+          "style": "light",
+          "blocks": [
+            "tabs-calculator"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.home > div:nth-of-type(12) h2.section-heading"
+          ]
+        },
+        {
+          "id": "digital-banking",
+          "name": "Digital Banking",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(13)",
+          "style": "dark",
+          "blocks": [
+            "cards-features"
+          ],
+          "defaultContent": [
+            "#digital-baking-sec div.section-heading"
+          ]
+        },
+        {
+          "id": "csr-progress",
+          "name": "CSR Progress",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(14)",
+          "style": "light",
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.home > div:nth-of-type(14)"
+          ]
+        },
+        {
+          "id": "safe-banking",
+          "name": "Safe Banking",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(15)",
+          "style": "light",
+          "blocks": [],
+          "defaultContent": [
+            "body > main > div.pageWrapper.home > div:nth-of-type(15)"
+          ]
+        },
+        {
+          "id": "financial-literacy-week",
+          "name": "Financial Literacy Week",
+          "selector": "body > main > div.pageWrapper.home > div:nth-of-type(17)",
+          "style": "light",
+          "blocks": [
+            "carousel-gallery"
+          ],
+          "defaultContent": [
+            "body > main > div.pageWrapper.home > div:nth-of-type(17) h2"
+          ]
+        }
+      ]
+    }
+  ]
+}

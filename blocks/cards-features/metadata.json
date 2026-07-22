@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-features",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-07-20T08:55:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.axis.bank.in/",
+    "originPage": "Axis Bank homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "compact",
+    "purpose": "app-features",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "grid of icon + short label cards",
+    "buttonCount": 0,
+    "imageCount": 12
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "app/product feature grids with icons",
+      "digital banking capability showcases",
+      "icon + label uniform card grids"
+    ],
+    "notSuitableFor": [
+      "large editorial article cards",
+      "single feature highlights"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-20T08:55:00.000Z"
+  }
+}

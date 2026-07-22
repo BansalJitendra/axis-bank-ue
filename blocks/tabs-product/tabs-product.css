@@ -1,0 +1,163 @@
+/* tabs-product -- Axis Bank homepage product finder (tabbed "most searched") */
+
+/* ---- Tab bar (horizontal tablist) ---- */
+.tabs-product .tabs-product-list {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 0;
+  margin: 32px 0 0;
+  padding: 0;
+  border-bottom: 1px solid var(--brand-muted);
+  overflow-x: auto;
+}
+
+@media (width >= 900px) {
+  .tabs-product .tabs-product-list {
+    justify-content: center;
+  }
+}
+
+.tabs-product .tabs-product-list button.tabs-product-tab {
+  flex: 0 0 max-content;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 8px 24px;
+  background-color: transparent;
+  color: var(--brand-muted);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.24px;
+  text-align: center;
+  text-transform: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.tabs-product .tabs-product-list button.tabs-product-tab p {
+  margin: 0;
+}
+
+.tabs-product .tabs-product-list button.tabs-product-tab:hover {
+  background-color: transparent;
+  color: var(--brand-pink);
+}
+
+.tabs-product .tabs-product-list button.tabs-product-tab[aria-selected='true'] {
+  position: relative;
+  color: var(--brand-pink);
+  cursor: default;
+}
+
+/* active-tab underline indicator */
+.tabs-product .tabs-product-list button.tabs-product-tab[aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background-color: var(--brand-pink);
+}
+
+/* ---- Tab panel ---- */
+.tabs-product .tabs-product-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 16px;
+  border: 0;
+  border-radius: 16px;
+  background-color: var(--background-color);
+  overflow: visible;
+}
+
+@media (width >= 900px) {
+  .tabs-product .tabs-product-panel {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}
+
+.tabs-product .tabs-product-panel[aria-hidden='true'] {
+  display: none;
+}
+
+/* the single content cell holds the article links + CTA */
+.tabs-product .tabs-product-panel > div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (width >= 900px) {
+  .tabs-product .tabs-product-panel > div {
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}
+
+/* ---- Article "most searched" cards ---- */
+.tabs-product .tabs-product-panel > div p:not(.button-container) {
+  display: flex;
+  flex: 1 1 340px;
+  align-items: center;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid rgb(241 244 247);
+  border-radius: 12px;
+  background-color: rgb(241 244 247);
+}
+
+.tabs-product .tabs-product-panel > div p:not(.button-container) a:any-link {
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.24px;
+  text-decoration: none;
+}
+
+.tabs-product .tabs-product-panel > div p:not(.button-container) a:hover {
+  color: var(--brand-maroon);
+  text-decoration: none;
+}
+
+/* ---- Explore Learning Hub CTA (last link, auto-decorated as button) ---- */
+.tabs-product .tabs-product-panel .button-container {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.tabs-product .tabs-product-panel a.button:any-link {
+  margin: 0;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 24px;
+  background-color: var(--brand-maroon);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.24px;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.tabs-product .tabs-product-panel a.button:hover,
+.tabs-product .tabs-product-panel a.button:focus {
+  background-color: var(--brand-pink);
+  color: #fff;
+}

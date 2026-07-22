@@ -1,0 +1,130 @@
+/* Block: tabs-calculator — visual design migrated from source EMI/FD/SIP/PPF calculator */
+
+/* ---- Tab bar (role=tablist) ---- */
+.tabs-calculator .tabs-calculator-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 100%;
+  margin: 24px 0 0;
+  padding: 0;
+  overflow-x: auto;
+}
+
+.tabs-calculator .tabs-calculator-list button {
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid rgb(226 226 226);
+  border-radius: 4px;
+  padding: 12px 16px;
+  background-color: var(--brand-light);
+  color: var(--brand-muted);
+  font-family: var(--body-font-family);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: capitalize;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+@media (width >= 900px) {
+  .tabs-calculator .tabs-calculator-list button {
+    font-size: 14px;
+  }
+}
+
+.tabs-calculator .tabs-calculator-list button:hover {
+  background-color: rgb(240 240 240);
+  color: var(--text-color);
+}
+
+.tabs-calculator .tabs-calculator-list button[aria-selected='true'] {
+  background-color: var(--brand-maroon);
+  color: #fff;
+  cursor: default;
+}
+
+.tabs-calculator .tabs-calculator-list button[aria-selected='true']:hover {
+  background-color: var(--brand-maroon);
+  color: #fff;
+}
+
+/* ---- Panel (role=tabpanel) ---- */
+.tabs-calculator .tabs-calculator-panel {
+  margin-top: 24px;
+  padding: 24px;
+  border: 1px solid rgb(226 226 226);
+  border-radius: 8px;
+  background-color: var(--background-color);
+  overflow: auto;
+}
+
+.tabs-calculator .tabs-calculator-panel[aria-hidden='true'] {
+  display: none;
+}
+
+/* Content richtext cell — input label lines */
+.tabs-calculator .tabs-calculator-panel > div {
+  padding: 0;
+}
+
+.tabs-calculator .tabs-calculator-panel p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgb(226 226 226);
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Reset paragraph margin inside tab buttons (title cell) */
+.tabs-calculator .tabs-calculator-list button p {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Result / EMI summary line (last text paragraph before the CTA) */
+.tabs-calculator .tabs-calculator-panel p:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* ---- CTA button ---- */
+.tabs-calculator .tabs-calculator-panel .button-container {
+  display: block;
+  margin-top: 8px;
+}
+
+.tabs-calculator .tabs-calculator-panel a.button:any-link {
+  display: inline-block;
+  margin: 0;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  background-color: var(--brand-maroon);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.tabs-calculator .tabs-calculator-panel a.button:any-link:hover {
+  background-color: var(--brand-pink);
+  color: #fff;
+}

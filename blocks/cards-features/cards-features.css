@@ -1,0 +1,74 @@
+/* cards-features: icon + label feature cards (digital banking section)
+   Source: #digital-baking-sec .digi-list / .digi-card
+   Lives inside .section.dark - style for readability on dark maroon bg.
+   Decorated DOM: .cards-features > ul > li > div (image cell) + div (text/label cell).
+   NOTE: authored image cells are empty, so cells carry .cards-features-card-body;
+   positional selectors are used so the layout is robust whether or not an icon exists. */
+
+.cards-features > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* each card (li) */
+.cards-features > ul > li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 96px;
+  padding: 24px;
+  background-color: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 16px 0 16px 16px;
+  box-shadow: none;
+  text-align: left;
+}
+
+/* icon cell (first cell) */
+.cards-features > ul > li > div:first-child {
+  flex: 0 0 auto;
+  margin: 0;
+  line-height: 0;
+  color: rgb(237 17 100); /* brand-pink accent for icons */
+}
+
+/* label cell (last cell) */
+.cards-features > ul > li > div:last-child {
+  margin: 0;
+  max-width: 175px;
+}
+
+/* only reserve icon space when the image cell actually holds content */
+.cards-features > ul > li > div:first-child:not(:empty) {
+  width: 40px;
+  height: 40px;
+  margin-right: 24px;
+}
+
+.cards-features > ul > li > div:first-child img,
+.cards-features > ul > li > div:first-child .icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.cards-features > ul > li > div:last-child p {
+  margin: 0;
+  padding: 0;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgb(255 255 255 / 90%); /* lightened from brand-muted for dark section */
+}
+
+@media (width >= 900px) {
+  .cards-features > ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 56px;
+  }
+}

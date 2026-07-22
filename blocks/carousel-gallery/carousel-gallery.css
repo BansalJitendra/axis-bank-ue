@@ -1,0 +1,171 @@
+/* Carousel Gallery — Financial Literacy Week image slider
+   Source: axis.bank.in home "Financial Literacy Week" owl-carousel.
+   Maroon gradient card, square rounded images shown in a horizontal
+   row, pill slide indicators and circular nav arrows. */
+
+.carousel-gallery {
+  position: relative;
+  border-radius: 16px;
+  padding: 40px 24px;
+  background-image: linear-gradient(110deg, rgb(61 15 35) -5.79%, var(--brand-maroon) 69.91%);
+  color: rgb(255 255 255);
+}
+
+.carousel-gallery .carousel-gallery-slides-container {
+  position: relative;
+}
+
+.carousel-gallery .carousel-gallery-slides,
+.carousel-gallery .carousel-gallery-slide-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-gallery .carousel-gallery-slides {
+  display: flex;
+  gap: 16px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow: scroll clip;
+}
+
+.carousel-gallery .carousel-gallery-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-gallery .carousel-gallery-slide {
+  flex: 0 0 80%;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.carousel-gallery .carousel-gallery-slide .carousel-gallery-slide-image {
+  width: 100%;
+}
+
+.carousel-gallery .carousel-gallery-slide .carousel-gallery-slide-image p {
+  margin: 0;
+}
+
+.carousel-gallery .carousel-gallery-slide .carousel-gallery-slide-image picture {
+  display: block;
+}
+
+.carousel-gallery .carousel-gallery-slide .carousel-gallery-slide-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* the second (content) cell is empty for this gallery */
+.carousel-gallery .carousel-gallery-slide .carousel-gallery-slide-content:empty {
+  display: none;
+}
+
+/* slide indicators — pill dots, centered below the row */
+.carousel-gallery .carousel-gallery-slide-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  padding: 0;
+  line-height: 0;
+}
+
+.carousel-gallery .carousel-gallery-slide-indicator button {
+  width: 6px;
+  height: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 15px;
+  background-color: rgb(255 255 255 / 45%);
+  transition: width 0.2s, background-color 0.2s;
+}
+
+.carousel-gallery .carousel-gallery-slide-indicator button:disabled,
+.carousel-gallery .carousel-gallery-slide-indicator button:hover,
+.carousel-gallery .carousel-gallery-slide-indicator button:focus-visible {
+  width: 16px;
+  background-color: rgb(255 255 255);
+}
+
+/* navigation arrows — circular, brand-tinted, at the slide edges */
+.carousel-gallery .carousel-gallery-navigation-buttons {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.carousel-gallery .carousel-gallery-navigation-buttons button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgb(255 255 255);
+  transition: background-color 0.2s;
+}
+
+.carousel-gallery .carousel-gallery-navigation-buttons button:hover,
+.carousel-gallery .carousel-gallery-navigation-buttons button:focus-visible {
+  background-color: var(--brand-pink);
+}
+
+.carousel-gallery .carousel-gallery-navigation-buttons button::after {
+  display: block;
+  content: '';
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 2px);
+  border: 2px solid var(--brand-maroon);
+  border-bottom: 0;
+  border-left: 0;
+  transform: translate(-50%, -50%) rotate(-135deg);
+  transition: border-color 0.2s;
+}
+
+.carousel-gallery .carousel-gallery-navigation-buttons button.slide-next::after {
+  left: calc(50% - 2px);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.carousel-gallery .carousel-gallery-navigation-buttons button:hover::after,
+.carousel-gallery .carousel-gallery-navigation-buttons button:focus-visible::after {
+  border-color: rgb(255 255 255);
+}
+
+@media (width >= 900px) {
+  .carousel-gallery {
+    padding: 40px 60px;
+  }
+
+  .carousel-gallery .carousel-gallery-slide {
+    flex: 0 0 calc((100% - 60px) / 3);
+  }
+
+  .carousel-gallery .carousel-gallery-slides {
+    gap: 30px;
+  }
+
+  .carousel-gallery .carousel-gallery-navigation-buttons {
+    left: -20px;
+    right: -20px;
+  }
+}

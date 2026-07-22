@@ -1,0 +1,22 @@
+{
+  "status": "success",
+  "url": "https://www.axis.bank.in/",
+  "path": "index",
+  "timestamp": "2026-07-21T12:15:38.464Z",
+  "title": "Personal Banking | Internet Banking | Corporate, NRI Banking Services Online - Axis Bank",
+  "template": "homepage",
+  "blocks": [
+    "carousel-banner",
+    "tabs-product",
+    "table-rates",
+    "columns-product",
+    "columns-product",
+    "columns-product",
+    "columns-product",
+    "columns-product",
+    "columns-promo",
+    "tabs-calculator",
+    "cards-features",
+    "carousel-gallery"
+  ]
+}

@@ -115,6 +115,36 @@
           }
         },
         {
+          "title": "Cards Features",
+          "id": "cards-features",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Cards Features",
+                  "filter": "cards-features"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Card",
+          "id": "card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Card",
+                  "model": "card"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Cards",
           "id": "cards",
           "plugins": {
@@ -145,6 +175,66 @@
           }
         },
         {
+          "title": "Carousel Banner",
+          "id": "carousel-banner",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Carousel Banner",
+                  "filter": "carousel-banner"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Carousel Banner Slide",
+          "id": "carousel-banner-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Carousel Banner Slide",
+                  "model": "carousel-banner-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Carousel Gallery",
+          "id": "carousel-gallery",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Carousel Gallery",
+                  "filter": "carousel-gallery"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Carousel Gallery Slide",
+          "id": "carousel-gallery-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Carousel Gallery Slide",
+                  "model": "carousel-gallery-item"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Carousel",
           "id": "carousel",
           "plugins": {
@@ -169,6 +259,36 @@
                 "template": {
                   "name": "Carousel Slide",
                   "model": "carousel-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Columns Product",
+          "id": "columns-product",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/columns/v1/columns",
+                "template": {
+                  "columns": "2",
+                  "rows": "1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Columns Promo",
+          "id": "columns-promo",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/columns/v1/columns",
+                "template": {
+                  "columns": "2",
+                  "rows": "1"
                 }
               }
             }
@@ -296,6 +416,92 @@
           }
         },
         {
+          "title": "Table Rates",
+          "id": "table-rates",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Table Rates",
+                  "model": "table-rates",
+                  "filter": "table-rates"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Row",
+          "id": "table-rates-row",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Row",
+                  "model": "table-rates-row",
+                  "column1text": "Column1"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Row",
+          "id": "table-rates-col-2",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Row",
+                  "model": "table-rates-col-2",
+                  "column1text": "Column1",
+                  "column2text": "Column2"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Row",
+          "id": "table-rates-col-3",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Row",
+                  "model": "table-rates-col-3",
+                  "column1text": "Column1",
+                  "column2text": "Column2",
+                  "column3text": "Column3"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Row",
+          "id": "table-rates-col-4",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Row",
+                  "model": "table-rates-col-4",
+                  "column1text": "Column1",
+                  "column2text": "Column2",
+                  "column3text": "Column3",
+                  "column4text": "Column4"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Table",
           "id": "table",
           "plugins": {
@@ -376,6 +582,70 @@
                   "column2text": "Column2",
                   "column3text": "Column3",
                   "column4text": "Column4"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tabs Calculator",
+          "id": "tabs-calculator",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Tabs Calculator",
+                  "filter": "tabs-calculator"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tabs Calculator Item",
+          "id": "tabs-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Tab",
+                  "model": "tabs-calculator-item",
+                  "title": "Tab Name",
+                  "content_headingType": "h3"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tabs Product",
+          "id": "tabs-product",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Tabs Product",
+                  "filter": "tabs-product"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tabs Product Item",
+          "id": "tabs-product-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Tab",
+                  "model": "tabs-product-item",
+                  "title": "Tab Name",
+                  "content_headingType": "h3"
                 }
               }
             }

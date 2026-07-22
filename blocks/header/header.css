@@ -1,322 +1,726 @@
-/* header and nav layout */
-header .nav-wrapper {
-  background-color: var(--background-color);
-  width: 100%;
-  z-index: 2;
-  position: fixed;
+/* Axis Bank header — solid header, maroon brand bar + white product nav + full-width megamenu */
+
+/* stylelint-disable no-descending-specificity */
+
+:root {
+  --axis-maroon: #97144d;
+  --axis-maroon-dark: #7a1040;
+  --axis-nav-text: #333;
+  --axis-panel-bg: #fff;
+  --axis-border: #e3e3e3;
 }
 
-header nav {
-  box-sizing: border-box;
-  display: grid;
-  grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / auto 1fr auto;
-  align-items: center;
-  gap: 0 24px;
-  margin: auto;
-  max-width: 1248px;
-  height: var(--nav-height);
-  padding: 0 24px;
-  font-family: var(--body-font-family);
-}
-
-header nav[aria-expanded='true'] {
-  grid-template:
-    'hamburger brand' var(--nav-height)
-    'sections sections' 1fr
-    'tools tools' var(--nav-height) / auto 1fr;
-  overflow-y: auto;
-  min-height: 100dvh;
-}
-
-@media (width >= 900px) {
-  header nav {
-    display: flex;
-    justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
-  }
-
-  header nav[aria-expanded='true'] {
-    min-height: 0;
-    overflow: visible;
-  }
-}
-
-header nav p {
-  margin: 0;
-  line-height: 1;
-}
-
-header nav a:any-link {
-  color: currentcolor;
-}
-
-/* hamburger */
-header nav .nav-hamburger {
-  grid-area: hamburger;
-  height: 22px;
-  display: flex;
-  align-items: center;
-}
-
-header nav .nav-hamburger button {
-  height: 22px;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
-  overflow: initial;
-  text-overflow: initial;
-  white-space: initial;
-}
-
-header nav .nav-hamburger-icon,
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  box-sizing: border-box;
-  display: block;
+header {
   position: relative;
-  width: 20px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+
+  /* override the global fixed header height so the two rows size to content */
+  height: auto;
+  color: #000;
+  font-family: Lato, lato-regular, var(--body-font-family);
+  line-height: normal;
+  background-color: transparent;
+  box-shadow: rgb(0 0 0 / 8%) 0 4px 6px 0;
 }
 
-header nav .nav-hamburger-icon::before,
-header nav .nav-hamburger-icon::after {
-  content: '';
-  position: absolute;
-  background: currentcolor;
+/* the two top-level rows are direct children of <header> */
+header > .header-row {
+  box-sizing: border-box;
+  width: 100%;
 }
 
-header nav[aria-expanded='false'] .nav-hamburger-icon,
-header nav[aria-expanded='false'] .nav-hamburger-icon::before,
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  height: 2px;
-  border-radius: 2px;
-  background: currentcolor;
+header .nav-wrapper {
+  width: 100%;
+  z-index: 20;
+  position: relative;
+  color: #000;
+  line-height: normal;
 }
 
-header nav[aria-expanded='false'] .nav-hamburger-icon::before {
-  top: -6px;
+header ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-header nav[aria-expanded='false'] .nav-hamburger-icon::after {
-  top: 6px;
+header a:any-link {
+  color: inherit;
+  text-decoration: none;
 }
 
-header nav[aria-expanded='true'] .nav-hamburger-icon {
-  height: 22px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::before,
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: 3px;
-  left: 1px;
-  transform: rotate(45deg);
-  transform-origin: 2px 1px;
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger-icon::after {
-  top: unset;
-  bottom: 3px;
-  transform: rotate(-45deg);
-}
-
-@media (width >= 900px) {
-  header nav .nav-hamburger {
-    display: none;
-    visibility: hidden;
-  }
-}
-
-/* brand */
-header .nav-brand {
-  grid-area: brand;
-  flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
+header p {
+  margin: 0;
   line-height: 1;
 }
 
-header nav .nav-brand img {
-  width: 128px;
-  height: auto;
-}
+/* ===== Row 0: brand bar + search/CTA sub-row (~125px total) ===== */
 
-/* sections */
-header nav .nav-sections {
-  grid-area: sections;
-  flex: 1 1 auto;
-  display: none;
-  visibility: hidden;
-}
-
-header nav[aria-expanded='true'] .nav-sections {
+/* Keep the top row's height aligned with the source (maroon bar + white
+   sub-row) regardless of how many audience/utility links wrap. */
+header .header-row-top {
   display: block;
-  visibility: visible;
-  align-self: start;
-}
-
-header nav .nav-sections ul {
-  list-style: none;
-  padding-left: 0;
-  font-size: var(--body-font-size-s);
-}
-
-header nav .nav-sections ul > li {
-  font-weight: 500;
-}
-
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
-}
-
-header nav .nav-sections ul > li > ul > li {
-  font-weight: 400;
-}
-
-@media (width >= 900px) {
-  header nav .nav-sections {
-    display: block;
-    visibility: visible;
-    white-space: nowrap;
-  }
-
-  header nav[aria-expanded='true'] .nav-sections {
-    align-self: unset;
-  }
-
-  header nav .nav-sections .nav-drop {
-    position: relative;
-    padding-right: 16px;
-    cursor: pointer;
-  }
-
-  header nav .nav-sections .nav-drop::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    transform: rotate(135deg);
-    width: 6px;
-    height: 6px;
-    border: 2px solid currentcolor;
-    border-radius: 0 1px 0 0;
-    border-width: 2px 2px 0 0;
-  }
-
-  header nav .nav-sections .nav-drop[aria-expanded='true']::after {
-    top: unset;
-    bottom: 2px;
-    transform: rotate(315deg);
-  }
-
-  header nav .nav-sections ul {
-    display: flex;
-    gap: 24px;
-    margin: 0;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: relative;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul {
-    display: none;
-    position: relative;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
-    display: block;
-    position: absolute;
-    left: -24px;
-    width: 200px;
-    top: 150%;
-    padding: 16px;
-    background-color: var(--light-color);
-    white-space: initial;
-    z-index: 1;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 16px;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid var(--light-color);
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li > ul > li {
-    padding: 8px 0;
-  }
-}
-
-/* tools */
-header nav .nav-tools {
-  grid-area: tools;
-}
-
-header nav .nav-tools .button {
-  margin: 0;
-  border: none;
-  padding: 0.5em;
-  background: none;
-  line-height: 0;
-}
-
-/* breadcrumbs */
-header .breadcrumbs {
-  display: none;
-  margin: auto;
-  max-width: 1248px;
-  height: var(--breadcrumbs-height);
-  padding: 0 24px;
-  font-size: var(--body-font-size-xs);
+  height: 125px;
   overflow: hidden;
 }
 
-header .breadcrumbs ol {
+header .nav-brand-row {
   display: flex;
-  flex-flow: wrap;
-  list-style: none;
+  align-items: center;
+  gap: 24px;
+  background-color: var(--axis-maroon);
+  color: #fff;
+  padding: 10px 32px;
+  height: 48px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+header .nav-brand {
+  flex: 0 0 auto;
+}
+
+header .nav-brand img {
+  width: 150px;
+  height: 38px;
+  display: block;
+}
+
+header .nav-brand a {
+  display: block;
+  line-height: normal;
+}
+
+header .nav-audience {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
+
+header .nav-audience li a {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 16px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+header .nav-audience li:first-child a {
+  background-color: #fff;
+  color: var(--axis-maroon);
+  font-weight: 600;
+}
+
+header .nav-audience li a:hover {
+  background-color: rgb(255 255 255 / 20%);
+}
+
+/* ===== Row 1: product megamenu bar (white) ===== */
+
+/* rowBottom is the direct <header> child measured for parity; mirror the
+   source's centered ~1190px flex container on a white background. */
+header .header-row-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: normal;
+  background-color: #fff;
+  max-width: 1190px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+header .nav-products {
+  flex: 1 1 auto;
+  background-color: #fff;
   padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  gap: 1ch;
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-header .breadcrumbs ol li {
+header .nav-products > ul {
+  display: flex;
+  height: 40px;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 4px;
+}
+
+header .header-row-bottom .nav-products > ul > li > a {
+  padding: 8px 12px;
+}
+
+header .nav-products > ul > li {
+  position: static;
+}
+
+header .nav-products > ul > li > a {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--axis-nav-text);
+}
+
+header .nav-products > ul > li.has-panel > a::after {
+  content: '';
+  display: inline-block;
+  margin-left: 6px;
+  width: 6px;
+  height: 6px;
+  border: 2px solid currentcolor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translateY(-2px);
+}
+
+header .nav-products > ul > li > a:hover,
+header .nav-products > ul > li[aria-expanded='true'] > a {
+  color: var(--axis-maroon);
+}
+
+/* megamenu panels — full viewport width, contained */
+header .nav-products .megamenu-panel {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--axis-panel-bg);
+  box-shadow: 0 12px 24px rgb(0 0 0 / 15%);
+  border-top: 1px solid var(--axis-border);
+  padding: 24px 32px;
+  z-index: 30;
+  gap: 24px 40px;
+  align-items: flex-start;
+}
+
+header .nav-products > ul > li[aria-expanded='true'] > .megamenu-panel {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* the link list forms the main multi-column area */
+header .nav-products .megamenu-panel > ul.megamenu-links {
+  flex: 1 1 60%;
+  columns: 4;
+  column-gap: 32px;
+}
+
+/* filter pills row spans the full panel above the links */
+header .nav-products .megamenu-panel > ul.megamenu-filters {
+  flex: 1 1 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--axis-border);
+  padding-bottom: 12px;
+}
+
+header .nav-products .megamenu-panel > ul.megamenu-filters > li {
+  padding: 6px 14px;
+  border: 1px solid var(--axis-border);
+  border-radius: 16px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--axis-nav-text);
+}
+
+header .nav-products .megamenu-panel > ul.megamenu-filters > li.is-active {
+  background-color: var(--axis-maroon);
+  border-color: var(--axis-maroon);
+  color: #fff;
+}
+
+header .nav-products .megamenu-panel li {
+  padding: 6px 0;
+  break-inside: avoid;
+}
+
+header .nav-products .megamenu-panel li a {
+  font-size: 14px;
+  color: var(--axis-nav-text);
+}
+
+header .nav-products .megamenu-panel li a:hover {
+  color: var(--axis-maroon);
+  text-decoration: underline;
+}
+
+/* nested (level 3) links render indented under their parent */
+header .nav-products .megamenu-panel li > ul {
+  margin-top: 4px;
+  padding-left: 12px;
+  border-left: 2px solid var(--axis-border);
+  columns: 1;
+}
+
+header .nav-products .megamenu-panel li > ul li a {
+  font-size: 13px;
+  color: #666;
+}
+
+/* source exposes product-card titles as heading/title elements; keep them in
+   the DOM for parity but do not render duplicate visible headings */
+header .nav-products .megamenu-panel h3 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  margin: -1px;
   padding: 0;
-  color: var(--dark-color);
+  border: 0;
 }
 
-header .breadcrumbs ol li:not(:last-child)::after {
-  content: '/';
-  padding-left: 1ch;
+/* promotional image cards inside a panel (right side) */
+header .nav-products .megamenu-panel p {
+  flex: 0 0 200px;
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-header .breadcrumbs ol li[aria-current] {
-  color: var(--text-color);
+header .nav-products .megamenu-panel p img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 6px;
+  display: block;
 }
 
-@media (width >= 900px) {
-  header .breadcrumbs {
+/* ===== White search/CTA sub-row (locale + search + CTA) ===== */
+header .nav-utility {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 16px;
+  background-color: #fafafa;
+  padding: 8px 32px;
+  border-top: 1px solid var(--axis-border);
+  font-size: 13px;
+  height: 77px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* supplemental top-bar links (extra <ul> with no role) are present for content
+   parity but should not consume layout height in the utility sub-row */
+header .nav-utility > ul:not(.nav-locale, .nav-actions) {
+  display: none;
+}
+
+header .nav-search {
+  flex: 1 1 auto;
+  max-width: 420px;
+}
+
+header .nav-search form {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--axis-border);
+  border-radius: 20px;
+  padding: 4px 12px;
+  background: #fff;
+}
+
+header .nav-search-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+header .nav-search input[type='search'] {
+  flex: 1 1 auto;
+  border: 0;
+  outline: 0;
+  font-size: 14px;
+  background: transparent;
+}
+
+header .nav-search-submit {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2397144d' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+header .nav-locale {
+  display: flex;
+  gap: 8px;
+}
+
+header .nav-locale li a {
+  color: var(--axis-nav-text);
+  padding: 4px 6px;
+}
+
+header .nav-locale li.is-current a {
+  font-weight: 700;
+  color: var(--axis-maroon);
+}
+
+header .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
+
+header .nav-actions li a {
+  color: var(--axis-nav-text);
+  white-space: nowrap;
+}
+
+header .nav-actions li a.nav-cta {
+  background-color: var(--axis-maroon);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+header .nav-actions li a.nav-cta:hover {
+  background-color: var(--axis-maroon-dark);
+}
+
+/* ===== hamburger (mobile only) ===== */
+header .nav-hamburger {
+  display: none;
+}
+
+header .nav-hamburger button {
+  height: 22px;
+  width: 24px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+header .nav-hamburger-icon,
+header .nav-hamburger-icon::before,
+header .nav-hamburger-icon::after {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  width: 22px;
+  height: 2px;
+  background: currentcolor;
+  border-radius: 2px;
+
+  /* hamburger -> cross morph, matching source timing/easing (0.5s ease-in-out) */
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, top 0.5s ease-in-out;
+}
+
+header .nav-hamburger-icon::before,
+header .nav-hamburger-icon::after {
+  content: '';
+  position: absolute;
+}
+
+header .nav-hamburger-icon::before { top: -7px; }
+header .nav-hamburger-icon::after { top: 7px; }
+
+/* open state: top/bottom bars rotate into an X, middle bar fades out */
+header .nav-hamburger.open .nav-hamburger-icon {
+  background: transparent;
+}
+
+header .nav-hamburger.open .nav-hamburger-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+header .nav-hamburger.open .nav-hamburger-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+/* chevron toggle (mobile only) — hidden on desktop */
+header .nav-chevron {
+  display: none;
+}
+
+/* mobile-only affordances hidden on desktop */
+header .nav-panel-back {
+  display: none;
+}
+
+/* ===== Mobile (full-width-flush accordion drawer) ===== */
+@media (width < 900px) {
+  header {
+    box-shadow: none;
+  }
+
+  header .nav-hamburger {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    z-index: 60;
+    color: #fff;
+  }
+
+  /* keep brand row as the fixed maroon header bar; drop utility sub-row height */
+  header .header-row-top {
+    height: 56px;
+    overflow: visible;
+  }
+
+  header .nav-brand-row {
+    height: 56px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  header .nav-brand img {
+    width: 130px;
+    height: auto;
+  }
+
+  /* the maroon top bar shows only the logo + hamburger; audience/utility move
+     into the drawer below */
+  header .nav-brand-row .nav-audience {
+    display: none;
+  }
+
+  /* the product nav becomes a full-viewport drawer that scrolls; the top-level
+     items are an accordion that expands inline (siblings stay visible). The
+     drawer opens by sliding its left offset (not a CSS transform) so ancestor
+     elements of the accordion carry no transform — matching the source, whose
+     open menu container has transform:none. */
+  header .header-row-bottom {
     display: block;
-    max-width: 1264px;
-    padding: 0 32px;
+    position: fixed;
+    top: 56px;
+    left: -100%;
+    width: 100%;
+    max-width: none;
+    height: calc(100vh - 56px);
+    margin: 0;
+    background: #fff;
+    overflow-y: auto;
+    z-index: 50;
+    transition: left 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    visibility: hidden;
+  }
+
+  header .header-row-bottom[aria-expanded='true'] {
+    left: 0;
+    visibility: visible;
+  }
+
+  header .nav-products {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  /* full-width-flush: top-level items span edge-to-edge as stacked rows */
+  header .nav-products > ul {
+    display: block;
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 0;
+    height: auto;
+  }
+
+  header .nav-products > ul > li {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid var(--axis-border);
+    background: #f4f4f4;
+  }
+
+  header .header-row-bottom .nav-products > ul > li > a,
+  header .nav-products > ul > li > a {
+    flex: 1 1 auto;
+    display: block;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--axis-nav-text);
+  }
+
+  /* remove the desktop CSS caret; use the JS chevron button instead */
+  header .nav-products > ul > li.has-panel > a::after {
+    content: none;
+  }
+
+  /* chevron toggle button (expand affordance) — down caret that flips to up */
+  header .nav-chevron {
+    display: block;
+    flex: 0 0 auto;
+    width: 48px;
+    height: 52px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+  }
+
+  header .nav-chevron::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--axis-nav-text);
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -70%) rotate(45deg);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* expanded: caret rotates to point up */
+  header .nav-products > ul > li[aria-expanded='true'] > .nav-chevron::after {
+    transform: translate(-50%, -30%) rotate(-135deg);
+  }
+
+  /* sub-panel: accordion sub-menu that expands below its item. Absolutely
+     positioned (like the source's position:absolute .dropdown-menu) so the
+     top-level sibling rows keep their positions (they are not pushed off-screen)
+     while the panel overlays the list below the tapped item and scrolls
+     internally. Collapsed by default, revealed on aria-expanded. */
+  header .nav-products .megamenu-panel {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex: none;
+    width: 100%;
+    max-height: calc(100vh - 133px);
+    height: auto;
+    box-sizing: border-box;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
+    border-top: 1px solid var(--axis-border);
+    background: #fff;
+    padding: 0 0 8px;
+    overflow-y: auto;
+    transform: none;
+    z-index: 40;
+    columns: auto;
+    gap: 0;
+  }
+
+  header .nav-products > ul > li[aria-expanded='true'] > .megamenu-panel {
+    display: block;
+  }
+
+  /* accordion has no top-level slide-in back button */
+  header .nav-panel-back {
+    display: none;
+  }
+
+  /* sub-panel link list — full-width stacked rows */
+  header .nav-products .megamenu-panel > ul.megamenu-links {
+    flex: none;
+    columns: auto;
+    column-gap: 0;
+    display: block;
+    width: 100%;
+  }
+
+  header .nav-products .megamenu-panel > ul.megamenu-links > li {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border-bottom: 1px solid var(--axis-border);
+    background: #f4f4f4;
+    break-inside: auto;
+  }
+
+  header .nav-products .megamenu-panel > ul.megamenu-links > li > a {
+    flex: 1 1 auto;
+    padding: 16px 20px;
+    font-size: 14px;
+  }
+
+  /* filter pills + promo cards + hidden headings not shown on mobile drawer */
+  header .nav-products .megamenu-panel > ul.megamenu-filters,
+  header .nav-products .megamenu-panel > p {
+    display: none;
+  }
+
+  /* level-3 nested list renders as its own indented block when expanded */
+  header .nav-products .megamenu-panel li > ul {
+    flex: 1 1 100%;
+    margin: 0;
+    padding: 0 0 0 20px;
+    border-left: 0;
+    display: none;
+  }
+
+  header .nav-products .megamenu-panel li.has-subpanel[aria-expanded='true'] > ul {
+    display: block;
+  }
+
+  header .nav-products .megamenu-panel li.has-subpanel > ul > li {
+    border-top: 1px solid var(--axis-border);
+    padding: 12px 20px 12px 0;
+  }
+
+  /* ===== drawer top: audience selector (locale) ===== */
+
+  /* surface the audience tabs from the brand row as a strip at the top of the
+     drawer, matching the source's Personal/Business/NRI carousel */
+  header .header-row-bottom[aria-expanded='true']::before {
+    content: '';
+  }
+
+  header .nav-audience {
+    display: none;
+  }
+
+  header .header-row-bottom .nav-audience,
+  header .header-row-bottom[aria-expanded='true'] .nav-audience {
+    display: none;
+  }
+
+  /* ===== drawer bottom action bar (utility CTA) ===== */
+  header .nav-utility {
+    display: none;
+  }
+
+  header .header-row-bottom[aria-expanded='true'] ~ .header-row-top .nav-utility {
+    display: flex;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding: 12px 20px;
+    background: #fff;
+    border-top: 1px solid var(--axis-border);
+    z-index: 58;
+    overflow: visible;
+    justify-content: flex-end;
+  }
+
+  header .header-row-bottom[aria-expanded='true'] ~ .header-row-top .nav-utility .nav-search,
+  header .header-row-bottom[aria-expanded='true'] ~ .header-row-top .nav-utility .nav-locale {
+    display: none;
+  }
+
+  header .header-row-bottom[aria-expanded='true'] ~ .header-row-top .nav-utility .nav-actions {
+    margin: 0;
+    width: 100%;
+    justify-content: center;
   }
 }

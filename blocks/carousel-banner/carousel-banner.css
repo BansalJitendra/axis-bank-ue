@@ -1,0 +1,239 @@
+/*
+ * Block: carousel-banner -- Axis Bank hero banner
+ * Visual values extracted from source #hm-banner computed styles.
+ */
+
+/* ---- Block root: full-width pink/magenta radial gradient band ---- */
+.carousel-banner {
+  position: relative;
+  padding: 63px 0 107px;
+  color: var(--text-color);
+  background-image: radial-gradient(
+    circle,
+    rgb(246 232 255) 0,
+    rgb(255 237 251) 24%,
+    rgb(253 239 243) 42%,
+    rgb(241 246 254) 60%,
+    rgb(255 211 244) 85%,
+    rgb(251 215 225) 100%
+  );
+  background-size: 200% 200%;
+  background-position: 24% 50%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* Escape the section max-width so the gradient spans full viewport width */
+.carousel-banner-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+/* ---- Slides scaffold ---- */
+.carousel-banner .carousel-banner-slides-container {
+  position: relative;
+}
+
+.carousel-banner .carousel-banner-slides,
+.carousel-banner .carousel-banner-slide-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-banner .carousel-banner-slides {
+  display: flex;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow: scroll clip;
+}
+
+.carousel-banner .carousel-banner-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-banner .carousel-banner-slide {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  min-height: 330px;
+}
+
+/* ---- Decorative banner band SVG: lower portion, full width, behind content ---- */
+.carousel-banner .carousel-banner-slide-image {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 0;
+  pointer-events: none;
+  line-height: 0;
+}
+
+.carousel-banner .carousel-banner-slide-image p {
+  margin: 0;
+}
+
+.carousel-banner .carousel-banner-slide-image picture,
+.carousel-banner .carousel-banner-slide-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+}
+
+/* ---- Text content: headline + subtitle + CTAs, left aligned in centered container ---- */
+.carousel-banner .carousel-banner-slide-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--content-max-width, 1200px);
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: left;
+}
+
+.carousel-banner .carousel-banner-slide-content h2 {
+  margin: 0 0 16px;
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-size-xl, 40px);
+  font-weight: 500;
+  line-height: 1.36;
+  color: var(--text-color);
+}
+
+.carousel-banner .carousel-banner-slide-content p {
+  margin: 0;
+  font-size: var(--body-font-size-m, 18px);
+  font-weight: 400;
+  line-height: 1.34;
+  color: var(--brand-muted);
+}
+
+/* CTA row spacing */
+.carousel-banner .carousel-banner-slide-content .button-container,
+.carousel-banner .carousel-banner-slide-content p:has(a) {
+  margin-top: 20px;
+}
+
+/* Primary CTA: light pill with maroon text (Explore Learning Hub) */
+.carousel-banner .carousel-banner-slide-content a.button:any-link {
+  display: inline-block;
+  margin: 20px 12px 0 0;
+  padding: 12px 24px;
+  border: 1px solid rgb(226 226 226);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.25;
+  background-color: var(--brand-light);
+  color: var(--brand-maroon);
+}
+
+/* ---- Slide indicators (dots) ---- */
+.carousel-banner .carousel-banner-slide-indicators {
+  position: absolute;
+  inset: auto 0 24px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  line-height: 0;
+}
+
+.carousel-banner .carousel-banner-slide-indicator button {
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgb(255 255 255 / 60%);
+  transition: background-color 0.2s, width 0.2s;
+}
+
+/* ---- Navigation arrow buttons ---- */
+.carousel-banner .carousel-banner-navigation-buttons {
+  position: absolute;
+  top: 50%;
+  left: 24px;
+  right: 24px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.carousel-banner .carousel-banner-navigation-buttons button {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgb(151 20 77 / 15%);
+  pointer-events: auto;
+  transition: background-color 0.2s;
+}
+
+.carousel-banner .carousel-banner-navigation-buttons button::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 2px);
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--brand-maroon);
+  border-bottom: 0;
+  border-left: 0;
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.carousel-banner .carousel-banner-navigation-buttons button.slide-next::after {
+  left: calc(50% - 2px);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* ---- Hover / active states (after base rules) ---- */
+.carousel-banner .carousel-banner-slide-content a.button:any-link:hover,
+.carousel-banner .carousel-banner-slide-content a.button:any-link:focus {
+  background-color: var(--brand-maroon);
+  color: rgb(255 255 255);
+}
+
+.carousel-banner .carousel-banner-slide-indicator button:disabled,
+.carousel-banner .carousel-banner-slide-indicator button:hover,
+.carousel-banner .carousel-banner-slide-indicator button:focus-visible {
+  width: 26px;
+  border-radius: 5px;
+  background-color: var(--brand-maroon);
+}
+
+.carousel-banner .carousel-banner-navigation-buttons button:hover,
+.carousel-banner .carousel-banner-navigation-buttons button:focus-visible {
+  background-color: rgb(151 20 77 / 35%);
+}
+
+/* ---- Desktop ---- */
+@media (width >= 900px) {
+  .carousel-banner .carousel-banner-slide {
+    min-height: 500px;
+  }
+
+  .carousel-banner .carousel-banner-slide-content {
+    padding: 0 32px;
+  }
+
+  .carousel-banner .carousel-banner-slide-content h2 {
+    font-size: var(--heading-size-xxl, 48px);
+  }
+}

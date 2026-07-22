@@ -1,0 +1,36 @@
+{
+  "variantName": "carousel-gallery",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-07-20T08:55:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.axis.bank.in/",
+    "originPage": "Axis Bank homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "wide",
+    "purpose": "image-gallery",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image per slide (gallery)",
+    "buttonCount": 0,
+    "imageCount": 8
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "promotional image galleries",
+      "campaign/initiative photo sliders (e.g. Financial Literacy Week)"
+    ],
+    "notSuitableFor": [
+      "top-of-page hero banners with heavy overlay content"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-20T08:55:00.000Z"
+  }
+}

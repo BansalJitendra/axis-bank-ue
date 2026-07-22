@@ -1,0 +1,37 @@
+{
+  "variantName": "columns-product",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-07-20T08:55:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.axis.bank.in/",
+    "originPage": "Axis Bank homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "accent",
+    "density": "wide",
+    "purpose": "product-showcase",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + article links | product entries with links",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "two-column product showcase rows (image/links | product entries)",
+      "category promo bands (Savings, Credit Card, Loans, Investments, Deposits)"
+    ],
+    "notSuitableFor": [
+      "single-column content",
+      "repeating uniform card grids"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-20T08:55:00.000Z"
+  }
+}
