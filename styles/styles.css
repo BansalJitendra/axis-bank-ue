@@ -407,6 +407,28 @@ main .apply-now-carousel-images p:has(> a:empty) {
 /* stylelint-enable no-descending-specificity */
 
 /* ---------------------------------------------------------------------------
+   Hide the tab/flyout navigation that the import dumped inline into the hero
+   section. On the source these are revealed only on interaction (product-tab
+   mega-menus + a "Services" quick-access strip), never rendered inline. The
+   import flattened them into loose default content, adding ~3100px of dead
+   vertical space that does not exist on the live page.
+
+   In the Apply Now wrapper (nth-of-type(4)) children up to the links carousel
+   are the genuine Apply Now panel and stay; everything from the "accounts"
+   mega-menu heading onward is flyout nav and is hidden. The separate wrapper
+   holding the "Services" strip is hidden in full.
+   --------------------------------------------------------------------------- */
+/* stylelint-disable no-descending-specificity */
+main .section.carousel-banner-container .default-content-wrapper:nth-of-type(4) > #accounts,
+main .section.carousel-banner-container .default-content-wrapper:nth-of-type(4) > #accounts ~ * {
+  display: none;
+}
+
+main .section.carousel-banner-container .default-content-wrapper:has(> #services) {
+  display: none;
+}
+
+/* ---------------------------------------------------------------------------
    CSR "open to the progress of all" stats row.
    Default-content section (no block). The wrapper holds, in order:
      h2 (heading) | p (intro) | p (number) p (label) x3 | p.button-container.
@@ -455,3 +477,4 @@ main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default
   line-height: 1.4;
   color: var(--brand-muted, rgb(110 110 110));
 }
+/* stylelint-enable no-descending-specificity */
