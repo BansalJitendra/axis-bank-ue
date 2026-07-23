@@ -405,3 +405,53 @@ main .apply-now-carousel-images p:has(> a:empty) {
   display: none;
 }
 /* stylelint-enable no-descending-specificity */
+
+/* ---------------------------------------------------------------------------
+   CSR "open to the progress of all" stats row.
+   Default-content section (no block). The wrapper holds, in order:
+     h2 (heading) | p (intro) | p (number) p (label) x3 | p.button-container.
+   On the source these three stat pairs sit in a horizontal row of large stat
+   numbers with a small label beneath. Present the number/label pairs as an
+   inline stats row: large maroon numbers, muted labels. Scoped to the CSR
+   section via :has() on its heading so nothing else is affected.
+   --------------------------------------------------------------------------- */
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper {
+  text-align: center;
+}
+
+/* The number paragraphs: 3rd, 5th, 7th children (after h2 + intro p).
+   Each pure-number paragraph opens a stat "cell"; the label paragraph that
+   follows is pulled up beneath it. Lay the pairs out inline and centered. */
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(2),
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(3),
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(4),
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(5),
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(6),
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(7) {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  min-width: 150px;
+  margin: 0;
+}
+
+/* Numbers (2.05, 100, 3.27) — the odd stat paragraphs (2nd, 4th, 6th). */
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(2),
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(4),
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(6) {
+  margin-top: 24px;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--brand-maroon);
+}
+
+/* Labels (Households Across India, NCG, Trees Planted) — 3rd, 5th, 7th. */
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(3),
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(5),
+main .section:has(> .default-content-wrapper h2[id*="progress-of-all"]) .default-content-wrapper > p:nth-of-type(7) {
+  margin-bottom: 24px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--brand-muted, rgb(110 110 110));
+}

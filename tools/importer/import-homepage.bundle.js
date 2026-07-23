@@ -112,17 +112,30 @@ var CustomImportScript = (() => {
     const panels = Array.from(
       element.querySelectorAll(':scope > .banner-tab-card, :scope > [id^="banner"]')
     );
+    const tabList = document2.querySelector(".banner-tabs");
     const labelLinks = Array.from(
-      document2.querySelectorAll(".banner-tabs .banner-tab-link a[data-target], .banner-tab-link a[data-target]")
+      (tabList || document2).querySelectorAll(".banner-tab-link h3 a, .banner-tab-link h3, .banner-tab-link a")
     );
     const labelById = {};
+    const labelsInOrder = [];
     labelLinks.forEach((a) => {
+      const text = (a.textContent || "").replace(/\s+/g, " ").trim();
+      if (!text) return;
+      labelsInOrder.push(text);
       const target = a.getAttribute("data-target");
-      if (target) labelById[target] = (a.textContent || "").trim();
+      if (target) labelById[target] = text;
     });
+    const FALLBACK_LABELS = {
+      bannerSavingsAc: "Save & Grow",
+      bannerCreditCards: "Spend with Purpose",
+      bannerLoans: "Borrow Smart",
+      bannerInvestments: "Build for the future",
+      bannerPayments: "Smart Pay",
+      bannerProtection: "Bank safe"
+    };
     const cells = [];
-    panels.forEach((panel) => {
-      const label = labelById[panel.id] || (panel.getAttribute("aria-label") || "").trim();
+    panels.forEach((panel, idx) => {
+      const label = labelById[panel.id] || labelsInOrder[idx] || FALLBACK_LABELS[panel.id] || (panel.getAttribute("aria-label") || "").trim();
       const labelFrag = document2.createDocumentFragment();
       labelFrag.appendChild(document2.createComment(" field:title "));
       const labelCell = document2.createElement("p");
@@ -161,10 +174,9 @@ var CustomImportScript = (() => {
     const makeCell = (text, fieldName) => {
       const value = clean(text);
       const frag = document2.createDocumentFragment();
-      if (!value) return frag;
       frag.appendChild(document2.createComment(` field:${fieldName} `));
       const p = document2.createElement("p");
-      p.textContent = value;
+      p.textContent = value || "\xA0";
       frag.appendChild(p);
       return frag;
     };

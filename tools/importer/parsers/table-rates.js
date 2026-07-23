@@ -26,10 +26,12 @@ export default function parse(element, { document }) {
   const makeCell = (text, fieldName) => {
     const value = clean(text);
     const frag = document.createDocumentFragment();
-    if (!value) return frag; // empty cell: no content, no hint
     frag.appendChild(document.createComment(` field:${fieldName} `));
     const p = document.createElement('p');
-    p.textContent = value;
+    // Empty trailing cells (e.g. loan rows have no tenure) must still emit a
+    // paragraph with a non-breaking space. Otherwise md2jcr treats the cell as
+    // absent and backfills it with the model's default label ("Column4").
+    p.textContent = value || ' ';
     frag.appendChild(p);
     return frag;
   };

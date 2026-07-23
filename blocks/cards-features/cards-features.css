@@ -7,8 +7,9 @@
 
 .cards-features > ul {
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
+  max-width: 1000px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
@@ -19,10 +20,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  min-height: 96px;
-  padding: 24px;
+  gap: 20px;
+  min-height: 88px;
+  padding: 20px 24px;
   background-color: rgb(255 255 255 / 6%);
-  border: 1px solid rgb(255 255 255 / 12%);
+  border: 1px solid rgb(255 255 255 / 14%);
   border-radius: 16px 0 16px 16px;
   box-shadow: none;
   text-align: left;
@@ -38,15 +40,14 @@
 
 /* label cell (last cell) */
 .cards-features > ul > li > div:last-child {
+  flex: 1 1 auto;
   margin: 0;
-  max-width: 175px;
 }
 
 /* only reserve icon space when the image cell actually holds content */
 .cards-features > ul > li > div:first-child:not(:empty) {
   width: 40px;
   height: 40px;
-  margin-right: 24px;
 }
 
 .cards-features > ul > li > div:first-child img,
@@ -63,12 +64,19 @@
   font-size: 18px;
   font-weight: 400;
   line-height: 24px;
-  color: rgb(255 255 255 / 90%); /* lightened from brand-muted for dark section */
+  color: rgb(255 255 255 / 90%); /* light text on dark section */
+}
+
+@media (width >= 700px) {
+  .cards-features > ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 40px;
+  }
 }
 
 @media (width >= 900px) {
   .cards-features > ul {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px 56px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 48px;
   }
 }

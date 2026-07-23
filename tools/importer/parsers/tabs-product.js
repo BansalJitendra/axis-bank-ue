@@ -20,20 +20,45 @@ export default function parse(element, { document }) {
     element.querySelectorAll(':scope > .banner-tab-card, :scope > [id^="banner"]'),
   );
 
-  // Build a map of panel id -> tab label from the tablist (elsewhere in the page).
+  // Build the ordered list of friendly tab labels from the tablist.
+  // The source `ul.banner-tabs .banner-tab-link h3 a` anchors carry the
+  // friendly labels (Save & Grow, Spend with Purpose, ...). They may map to a
+  // panel via data-target, but on this site the anchors are href="javascript:void(0)"
+  // with no data-target, so the tab list order matches the panel order.
+  const tabList = document.querySelector('.banner-tabs');
   const labelLinks = Array.from(
-    document.querySelectorAll('.banner-tabs .banner-tab-link a[data-target], .banner-tab-link a[data-target]'),
+    (tabList || document).querySelectorAll('.banner-tab-link h3 a, .banner-tab-link h3, .banner-tab-link a'),
   );
   const labelById = {};
+  const labelsInOrder = [];
   labelLinks.forEach((a) => {
+    const text = (a.textContent || '').replace(/\s+/g, ' ').trim();
+    if (!text) return;
+    labelsInOrder.push(text);
     const target = a.getAttribute('data-target');
-    if (target) labelById[target] = (a.textContent || '').trim();
+    if (target) labelById[target] = text;
   });
+
+  // Stable fallback map (panel id -> friendly label) confirmed from the source
+  // tablist. The headless import can capture the DOM before the tab anchors are
+  // populated, in which case the ordered list above is empty; this guarantees
+  // the friendly labels instead of the raw panel ids.
+  const FALLBACK_LABELS = {
+    bannerSavingsAc: 'Save & Grow',
+    bannerCreditCards: 'Spend with Purpose',
+    bannerLoans: 'Borrow Smart',
+    bannerInvestments: 'Build for the future',
+    bannerPayments: 'Smart Pay',
+    bannerProtection: 'Bank safe',
+  };
 
   const cells = [];
 
-  panels.forEach((panel) => {
-    const label = labelById[panel.id] || (panel.getAttribute('aria-label') || '').trim();
+  panels.forEach((panel, idx) => {
+    const label = labelById[panel.id]
+      || labelsInOrder[idx]
+      || FALLBACK_LABELS[panel.id]
+      || (panel.getAttribute('aria-label') || '').trim();
 
     // Tab label cell (mandatory, first cell) -> item field:title
     const labelFrag = document.createDocumentFragment();
