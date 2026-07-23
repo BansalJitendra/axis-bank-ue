@@ -75,23 +75,11 @@ header .nav-brand-row {
   padding: 10px 32px;
   height: 48px;
   box-sizing: border-box;
-
-  /* allow the white logo box to overhang the maroon bar (matches the source,
-     where the logo sits in a taller white panel that protrudes on the left) */
-  overflow: visible;
+  overflow: hidden;
 }
 
-/* White logo panel that is taller than the maroon bar and overhangs it on the
-   left, mirroring the source header's prominent white logo box. */
 header .nav-brand {
   flex: 0 0 auto;
-  align-self: stretch;
-  display: flex;
-  align-items: center;
-  margin: -10px 0 -39px;
-  padding: 0 24px;
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
 }
 
 header .nav-brand img {
