@@ -89,13 +89,27 @@ function decorateDropdownBar(navBar) {
     li.classList.add('has-panel');
     li.setAttribute('aria-expanded', 'false');
 
+    // The top-level label link is a direct <a> child in the local fragment, but
+    // JCR conversion (published site) wraps a lone link in a <p>. Accept both so
+    // the trigger label (Accounts, Cards, Loans, …) always renders. Unwrap the
+    // <p> so the <a> becomes the direct child the rest of the code expects.
+    let trigger = li.querySelector(':scope > a');
+    if (!trigger) {
+      const triggerP = [...li.children].find(
+        (c) => c.tagName === 'P' && c.querySelector(':scope > a'),
+      );
+      if (triggerP) {
+        trigger = triggerP.querySelector(':scope > a');
+        triggerP.replaceWith(trigger);
+      }
+    }
+
     // Wrap the sub-link list plus any promo images/paragraphs into one panel
     // element so the whole megamenu (links + promo cards) shows/hides together.
     const panel = document.createElement('div');
     // 'nav-panel' keeps the panel discoverable by generic nav-panel tooling;
     // 'megamenu-panel' drives the desktop hover megamenu styling.
     panel.className = 'megamenu-panel nav-panel';
-    const trigger = li.querySelector(':scope > a');
     Array.from(li.children).forEach((child) => {
       if (child !== trigger) panel.append(child);
     });
@@ -104,7 +118,7 @@ function decorateDropdownBar(navBar) {
     // A list whose items carry no links is a set of filter pills — mark it and
     // wire simple click-to-activate filtering behaviour.
     panel.querySelectorAll(':scope > ul').forEach((ul) => {
-      const hasLinks = ul.querySelector(':scope > li > a');
+      const hasLinks = ul.querySelector(':scope > li > a, :scope > li > p > a');
       if (!hasLinks) {
         ul.classList.add('megamenu-filters');
         ul.querySelectorAll(':scope > li').forEach((pill) => {
@@ -164,7 +178,17 @@ function decorateDropdownBar(navBar) {
       if (!subList) return;
       subLi.classList.add('has-subpanel');
       subLi.setAttribute('aria-expanded', 'false');
-      const subLink = subLi.querySelector(':scope > a');
+      // Same <p>-wrapping fix as the top-level trigger (see above).
+      let subLink = subLi.querySelector(':scope > a');
+      if (!subLink) {
+        const subP = [...subLi.children].find(
+          (c) => c.tagName === 'P' && c.querySelector(':scope > a'),
+        );
+        if (subP) {
+          subLink = subP.querySelector(':scope > a');
+          subP.replaceWith(subLink);
+        }
+      }
       const subChevron = makeChevronToggle(subLink ? subLink.textContent.trim() : '');
       subChevron.addEventListener('click', (ev) => {
         ev.preventDefault();
