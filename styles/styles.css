@@ -428,6 +428,16 @@ main .section.carousel-banner-container .default-content-wrapper:has(> #services
   display: none;
 }
 
+/* The tabs-calculator block captured only the EMI calculators; the FD, SIP and
+   PPF calculators leaked out as ~2900px of loose form text (sliders, results)
+   rendered as stacked paragraphs. On the live page these are compact interactive
+   tabs. Hide the leaked FD/SIP/PPF form dump (the "FD Calculator" heading and all
+   following siblings) so the section matches the live calculator widget height. */
+main .section.tabs-calculator-container .default-content-wrapper > #fd-calculator-1,
+main .section.tabs-calculator-container .default-content-wrapper > #fd-calculator-1 ~ * {
+  display: none;
+}
+
 /* ---------------------------------------------------------------------------
    CSR "open to the progress of all" stats row.
    Default-content section (no block). The wrapper holds, in order:
