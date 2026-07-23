@@ -24,7 +24,10 @@ export default async function decorate(block) {
       const td = document.createElement(i === 0 && header ? 'th' : 'td');
 
       if (i === 0) td.setAttribute('scope', 'column');
-      td.innerHTML = cell.innerHTML;
+      // Empty authored cells fall back to the column-name placeholder
+      // (e.g. "Column4") during JCR conversion; render those as blank.
+      const isPlaceholder = /^Column\d+$/.test((cell.textContent || '').trim());
+      td.innerHTML = isPlaceholder ? '' : cell.innerHTML;
       tr.append(td);
     });
     if (i === 0 && header) thead.append(tr);
