@@ -71,6 +71,36 @@ function bindEvents(block) {
   });
 }
 
+/**
+ * The source banner headline is two phrases ("open to your learning" +
+ * "open to your <goal>") that collapse into one run of text during import,
+ * e.g. "open to your learningopen to your financial growth". Split it back at
+ * each "open to your" boundary so each phrase is its own line, and wrap the
+ * leading "open" so it can be styled (italic maroon) like the source.
+ * @param {Element} heading the slide's heading element
+ */
+function decorateBannerHeading(heading) {
+  if (!heading || heading.dataset.bannerDecorated) return;
+  const text = (heading.textContent || '').trim();
+  const lines = text.split(/(?=open to your)/i).map((l) => l.trim()).filter(Boolean);
+  if (!lines.length) return;
+  heading.textContent = '';
+  lines.forEach((line) => {
+    const lineEl = document.createElement('span');
+    lineEl.className = 'carousel-banner-headline-line';
+    if (/^open/i.test(line)) {
+      const open = document.createElement('span');
+      open.className = 'carousel-banner-headline-open';
+      open.textContent = 'open';
+      lineEl.append(open, document.createTextNode(` ${line.replace(/^open\s*/i, '')}`));
+    } else {
+      lineEl.textContent = line;
+    }
+    heading.append(lineEl);
+  });
+  heading.dataset.bannerDecorated = 'true';
+}
+
 function createSlide(row, slideIndex, carouselId) {
   const slide = document.createElement('li');
   slide.dataset.slideIndex = slideIndex;
@@ -85,6 +115,7 @@ function createSlide(row, slideIndex, carouselId) {
   const labeledBy = slide.querySelector('h1, h2, h3, h4, h5, h6');
   if (labeledBy) {
     slide.setAttribute('aria-labelledby', labeledBy.getAttribute('id'));
+    decorateBannerHeading(labeledBy);
   }
 
   return slide;

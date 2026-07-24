@@ -214,6 +214,19 @@ function decorateDropdownBar(navBar) {
     // Desktop click still lets the trigger link navigate; the chevron drives
     // expansion on mobile. On desktop, clicking the trigger navigates via href.
   });
+
+  // The nav fragment concatenates every audience's product menu (Personal,
+  // Business, NRI, Corporate) into one flat list of 30 items. The live header
+  // shows only the active audience's menu — Personal by default (Accounts …
+  // Bank Smart). Audience switching is not wired up, so keep the Personal group
+  // (up to and including "Bank Smart") and drop the rest to match the source.
+  const topItems = [...navBar.querySelectorAll(':scope > ul > li')];
+  const personalEndIdx = topItems.findIndex(
+    (li) => /^bank smart$/i.test((li.querySelector(':scope > a')?.textContent || '').trim()),
+  );
+  if (personalEndIdx > -1) {
+    topItems.slice(personalEndIdx + 1).forEach((li) => li.remove());
+  }
 }
 
 /**

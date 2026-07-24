@@ -105,6 +105,18 @@
   color: var(--text-color);
 }
 
+/* Headline phrases split onto their own lines (see decorateBannerHeading). */
+.carousel-banner .carousel-banner-slide-content h2 .carousel-banner-headline-line {
+  display: block;
+}
+
+/* The leading word "open" is italic maroon like the source. */
+.carousel-banner .carousel-banner-slide-content h2 .carousel-banner-headline-open {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--brand-maroon);
+}
+
 .carousel-banner .carousel-banner-slide-content p {
   margin: 0;
   font-size: var(--body-font-size-m, 18px);
