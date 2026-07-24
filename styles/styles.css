@@ -428,6 +428,14 @@ main .section.carousel-banner-container .default-content-wrapper:has(> #services
   display: none;
 }
 
+/* A stray duplicate of the hero banner image leaked out of the carousel block
+   and renders as a loose full-width image between the banner and the product
+   tabs (a default-content-wrapper whose only child is a single banner-image
+   paragraph). It does not exist on the live page — hide it. */
+main .section.carousel-banner-container .default-content-wrapper:nth-of-type(2):has(> p:only-child > picture) {
+  display: none;
+}
+
 /* The tabs-calculator block captured only the EMI calculators; the FD, SIP and
    PPF calculators leaked out as ~2900px of loose form text (sliders, results)
    rendered as stacked paragraphs. On the live page these are compact interactive
