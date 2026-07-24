@@ -348,7 +348,13 @@ export default async function decorate(block) {
   if (utilityRow) {
     utilityRow.classList.add('nav-utility');
     const lists = utilityRow.querySelectorAll(':scope > ul');
-    if (lists[0]) decorateLocaleSelector(lists[0]);
+    if (lists[0]) {
+      decorateLocaleSelector(lists[0]);
+      // The language selector (Eng / हिंदी) belongs in the top maroon bar on the
+      // right (next to the audience tabs), matching the source — not in the
+      // white search/CTA sub-row. Relocate it into the brand row.
+      if (brandRow) brandRow.append(lists[0]);
+    }
     if (lists[1]) decorateActionGroup(lists[1]);
     const searchEl = utilityRow.querySelector('p');
     const search = buildSearchControl(searchEl);

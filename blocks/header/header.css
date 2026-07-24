@@ -369,6 +369,24 @@ header .nav-locale li.is-current a {
   color: var(--axis-maroon);
 }
 
+/* Locale selector relocated into the top maroon brand bar: push it to the far
+   right and use light text so it reads on the maroon background (matches the
+   source, where Eng / हिंदी sit top-right by the audience tabs). */
+header .nav-brand-row .nav-locale {
+  margin-left: auto;
+  flex: 0 0 auto;
+  font-size: 13px;
+}
+
+header .nav-brand-row .nav-locale li a {
+  color: #fff;
+}
+
+header .nav-brand-row .nav-locale li.is-current a {
+  color: #fff;
+  font-weight: 700;
+}
+
 header .nav-actions {
   display: flex;
   align-items: center;
@@ -492,7 +510,8 @@ header .nav-panel-back {
 
   /* the maroon top bar shows only the logo + hamburger; audience/utility move
      into the drawer below */
-  header .nav-brand-row .nav-audience {
+  header .nav-brand-row .nav-audience,
+  header .nav-brand-row .nav-locale {
     display: none;
   }
 
