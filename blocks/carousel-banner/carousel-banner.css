@@ -45,7 +45,7 @@
   display: flex;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  overflow: scroll clip;
+  overflow: visible;
 }
 
 .carousel-banner .carousel-banner-slides::-webkit-scrollbar {
@@ -64,13 +64,10 @@
   min-height: 330px;
 }
 
-/* ---- Decorative banner band SVG: lower portion, full width, behind content ---- */
+/* ---- Decorative banner image: hidden. The source hero has no foreground
+   photo — just the pink gradient band and headline text. ---- */
 .carousel-banner .carousel-banner-slide-image {
-  position: absolute;
-  inset: auto 0 0;
-  z-index: 0;
-  pointer-events: none;
-  line-height: 0;
+  display: none;
 }
 
 .carousel-banner .carousel-banner-slide-image p {
@@ -248,4 +245,18 @@
   .carousel-banner .carousel-banner-slide-content h2 {
     font-size: var(--heading-size-xxl, 48px);
   }
+}
+
+/* ---- Static single banner (match source) ----
+   The source hero is a single static banner with no carousel rotation. The
+   import produced four near-duplicate content slides with nav arrows and dots.
+   Hide the carousel chrome and show only the first slide so the hero reads as
+   one static banner like the live page. */
+.carousel-banner .carousel-banner-navigation-buttons,
+.carousel-banner .carousel-banner-slide-indicators {
+  display: none;
+}
+
+.carousel-banner .carousel-banner-slide:not(:first-child) {
+  display: none;
 }
