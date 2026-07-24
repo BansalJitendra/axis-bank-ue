@@ -294,6 +294,35 @@ function decorateLocaleSelector(listEl) {
 }
 
 /**
+ * The source top maroon bar carries a row of utility icons on the right
+ * (locate branch/ATM, WhatsApp banking, light/dark theme toggle, font-size,
+ * notifications). These are functional UI controls, not authored content, so
+ * they are not in the nav fragment — build them here as inline-SVG buttons.
+ * @returns {Element} the icon group
+ */
+function buildTopBarIcons() {
+  const group = document.createElement('div');
+  group.className = 'nav-toputils';
+  const icons = [
+    { key: 'locator', label: 'Locate us', svg: '<path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/>' },
+    { key: 'whatsapp', label: 'WhatsApp banking', svg: '<path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.2 1.1-1.7 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.5-.6a8.6 8.6 0 0 1-3.4-3.4c-.3-.5-.6-1.1-.6-1.7 0-.6.3-1 .5-1.2l.5-.5c.2 0 .3 0 .5.4l.7 1.6c0 .2 0 .4-.1.5l-.3.4c-.1.2-.2.3-.1.5.3.6.8 1.2 1.3 1.6.4.3.8.5 1 .6.2.1.4.1.5-.1l.5-.6c.1-.2.3-.2.5-.1l1.5.7c.2.1.3.2.3.3z"/>' },
+    { key: 'theme', label: 'Toggle theme', svg: '<path d="M12 3a9 9 0 1 0 9 9c0-.5 0-.9-.1-1.3A5 5 0 0 1 12 3z"/>' },
+    { key: 'fontsize', label: 'Text size', svg: '<path d="M3 18l4-11h2l4 11h-2l-1-3H6l-1 3H3zm3.5-5h3L8 8.5 6.5 13zM14 18l3-8h1.6l3 8h-1.8l-.6-1.7h-2.8L15.8 18H14zm2.5-3.2h1.9L17.5 12l-1 2.8z"/>' },
+    { key: 'notify', label: 'Notifications', svg: '<path d="M12 22a2.1 2.1 0 0 0 2.1-2h-4.2A2.1 2.1 0 0 0 12 22zm6-6v-5a6 6 0 0 0-4.5-5.8V4.5a1.5 1.5 0 0 0-3 0v.7A6 6 0 0 0 6 11v5l-2 2v1h16v-1l-2-2z"/>' },
+  ];
+  icons.forEach(({ key, label, svg }) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = `nav-toputil nav-toputil-${key}`;
+    btn.setAttribute('aria-label', label);
+    btn.title = label;
+    btn.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${svg}</svg>`;
+    group.append(btn);
+  });
+  return group;
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -352,8 +381,12 @@ export default async function decorate(block) {
       decorateLocaleSelector(lists[0]);
       // The language selector (Eng / हिंदी) belongs in the top maroon bar on the
       // right (next to the audience tabs), matching the source — not in the
-      // white search/CTA sub-row. Relocate it into the brand row.
-      if (brandRow) brandRow.append(lists[0]);
+      // white search/CTA sub-row. Relocate it into the brand row, followed by
+      // the utility icon row (locate/WhatsApp/theme/text-size/notifications).
+      if (brandRow) {
+        brandRow.append(lists[0]);
+        brandRow.append(buildTopBarIcons());
+      }
     }
     if (lists[1]) decorateActionGroup(lists[1]);
     const searchEl = utilityRow.querySelector('p');
